@@ -11,298 +11,88 @@
             --primary: #ff9a9e;
             --secondary: #fad0c4;
             --accent: #a8edea;
+            --purple: #667eea;
             --text: #666;
             --white: #fff;
-            --shadow: 0 8px 30px rgba(255, 154, 158, 0.3);
         }
         
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
             background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 50%, #a8edea 100%);
             min-height: 100vh;
             padding: 20px;
             color: var(--text);
         }
         
-        .container { 
-            max-width: 400px; 
-            margin: 0 auto;
-        }
+        .container { max-width: 400px; margin: 0 auto; }
         
-        /* 装饰圆球 */
-        .orb {
-            position: fixed;
-            border-radius: 50%;
-            opacity: 0.3;
-            animation: float 6s ease-in-out infinite;
-            z-index: -1;
-        }
-        .orb-1 { width: 100px; height: 100px; background: #fff; top: 10%; left: 10%; animation-delay: 0s; }
+        .orb { position: fixed; border-radius: 50%; opacity: 0.3; animation: float 6s ease-in-out infinite; z-index: -1; }
+        .orb-1 { width: 100px; height: 100px; background: #fff; top: 10%; left: 10%; }
         .orb-2 { width: 60px; height: 60px; background: #ffecd2; top: 20%; right: 15%; animation-delay: 1s; }
         .orb-3 { width: 80px; height: 80px; background: #a8edea; bottom: 30%; left: 5%; animation-delay: 2s; }
         .orb-4 { width: 50px; height: 50px; background: #fff; bottom: 20%; right: 10%; animation-delay: 3s; }
         
-        @keyframes float {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(10deg); }
-        }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
         
-        .header {
-            text-align: center;
-            padding: 30px 0 20px;
-        }
+        .header { text-align: center; padding: 30px 0 20px; }
         
         .avatar {
-            width: 100px;
-            height: 100px;
-            background: var(--white);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 15px;
-            font-size: 50px;
-            box-shadow: var(--shadow);
-            animation: bounce 2s ease-in-out infinite;
+            width: 100px; height: 100px; background: var(--white); border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; margin: 0 auto 15px;
+            font-size: 50px; box-shadow: 0 8px 30px rgba(255,154,158,0.3); animation: bounce 2s infinite;
         }
         
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-8px); }
-        }
+        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
         
-        h1 {
-            font-size: 24px;
-            background: linear-gradient(90deg, #ff9a9e, #667eea);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-weight: 700;
-        }
+        h1 { font-size: 24px; background: linear-gradient(90deg, #ff9a9e, #667eea); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 700; }
+        .subtitle { font-size: 13px; color: #888; margin-top: 5px; }
         
-        .subtitle {
-            font-size: 13px;
-            color: #888;
-            margin-top: 5px;
-        }
+        .card { background: var(--white); border-radius: 24px; padding: 24px; box-shadow: 0 8px 30px rgba(255,154,158,0.3); margin-bottom: 16px; }
         
-        .card {
-            background: var(--white);
-            border-radius: 24px;
-            padding: 24px;
-            box-shadow: var(--shadow);
-            margin-bottom: 16px;
-            border: 1px solid rgba(255,255,255,0.5);
-        }
+        .input-field { width: 100%; padding: 16px; border: 2px solid var(--secondary); border-radius: 16px; font-size: 16px; outline: none; text-align: center; background: #fffaf9; }
+        .input-field:focus { border-color: var(--primary); box-shadow: 0 0 0 4px rgba(255,154,158,0.2); }
         
-        .input-field {
-            width: 100%;
-            padding: 16px;
-            border: 2px solid var(--secondary);
-            border-radius: 16px;
-            font-size: 16px;
-            outline: none;
-            transition: all 0.3s;
-            text-align: center;
-            background: #fffaf9;
-        }
+        .numbers { display: flex; gap: 10px; margin: 16px 0; }
+        .num-box { flex: 1; text-align: center; }
+        .num-box label { display: block; font-size: 12px; color: #999; margin-bottom: 6px; }
+        .num-box input { width: 100%; padding: 14px; border: 2px solid var(--secondary); border-radius: 12px; font-size: 20px; text-align: center; outline: none; font-weight: 600; color: var(--primary); }
+        .num-box input:focus { border-color: var(--primary); }
         
-        .input-field:focus {
-            border-color: var(--primary);
-            box-shadow: 0 0 0 4px rgba(255, 154, 158, 0.2);
-        }
+        .btn { width: 100%; padding: 16px; border: none; border-radius: 16px; font-size: 17px; font-weight: 600; cursor: pointer; transition: all 0.3s; }
+        .btn-primary { background: linear-gradient(135deg, #ff9a9e, #ffecd2); color: #fff; }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(255,154,158,0.4); }
+        .btn-secondary { background: var(--accent); color: #667eea; margin-top: 10px; }
         
-        .numbers {
-            display: flex;
-            gap: 10px;
-            margin: 16px 0;
-        }
+        .btn-ai { width: 100%; padding: 16px; border: none; border-radius: 14px; font-size: 16px; font-weight: 600; cursor: pointer; transition: all 0.3s; background: linear-gradient(135deg, #667eea, #764ba2); color: white; margin-top: 12px; }
+        .btn-ai:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(102,126,234,0.4); }
         
-        .num-box {
-            flex: 1;
-            text-align: center;
-        }
+        .result { display: none; animation: slideUp 0.5s ease; }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
         
-        .num-box label {
-            display: block;
-            font-size: 12px;
-            color: #999;
-            margin-bottom: 6px;
-        }
+        .gua { text-align: center; padding: 20px; background: linear-gradient(135deg, #fff9f9, #fafafa); border-radius: 20px; margin-bottom: 16px; }
+        .gua-symbols { font-size: 52px; letter-spacing: 12px; margin-bottom: 8px; }
+        .gua-name { font-size: 22px; font-weight: 700; background: linear-gradient(90deg, #ff9a9e, #667eea); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .gua-ci { font-size: 13px; color: #aaa; margin-top: 4px; font-style: italic; }
         
-        .num-box input {
-            width: 100%;
-            padding: 14px;
-            border: 2px solid var(--secondary);
-            border-radius: 12px;
-            font-size: 20px;
-            text-align: center;
-            outline: none;
-            transition: all 0.3s;
-            font-weight: 600;
-            color: var(--primary);
-        }
-        
-        .num-box input:focus {
-            border-color: var(--primary);
-        }
-        
-        .btn {
-            width: 100%;
-            padding: 16px;
-            border: none;
-            border-radius: 16px;
-            font-size: 17px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        
-        .btn-primary {
-            background: linear-gradient(135deg, #ff9a9e, #ffecd2);
-            color: #fff;
-            text-shadow: 0 1px 2px rgba(0,0,0,0.1);
-        }
-        
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(255, 154, 158, 0.4);
-        }
-        
-        .btn-secondary {
-            background: var(--accent);
-            color: #667eea;
-            margin-top: 10px;
-        }
-        
-        .result { 
-            display: none; 
-            animation: slideUp 0.5s ease;
-        }
-        
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .gua {
-            text-align: center;
-            padding: 20px;
-            background: linear-gradient(135deg, #fff9f9, #fafafa);
-            border-radius: 20px;
-            margin-bottom: 16px;
-        }
-        
-        .gua-symbols {
-            font-size: 52px;
-            letter-spacing: 12px;
-            margin-bottom: 8px;
-        }
-        
-        .gua-name {
-            font-size: 22px;
-            font-weight: 700;
-            background: linear-gradient(90deg, #ff9a9e, #667eea);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .gua-ci {
-            font-size: 13px;
-            color: #aaa;
-            margin-top: 4px;
-            font-style: italic;
-        }
-        
-        .ai-btns {
-            display: flex;
-            gap: 8px;
-            margin-top: 16px;
-        }
-        
-        .ai-btn {
-            flex: 1;
-            padding: 14px 8px;
-            border: none;
-            border-radius: 14px;
-            font-size: 14px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            color: white;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 4px;
-        }
-        
-        .ai-btn:hover { transform: translateY(-2px); }
-        
-        .btn-db { background: linear-gradient(135deg, #ff6b6b, #ffa500); }
-        .btn-km { background: linear-gradient(135deg, #667eea, #764ba2); }
-        .btn-ml { background: linear-gradient(135deg, #a8edea, #fed6e3); color: #667eea; }
-        
-        .fortune {
-            background: linear-gradient(135deg, rgba(255,154,158,0.1), rgba(168,237,234,0.1));
-            border-radius: 16px;
-            padding: 20px;
-            margin-top: 16px;
+        .fortune-card {
+            background: linear-gradient(135deg, rgba(255,154,158,0.15), rgba(168,237,234,0.15));
+            border-radius: 20px; padding: 20px; margin-top: 16px;
             border: 2px dashed var(--accent);
         }
         
-        .fortune-title {
-            text-align: center;
-            font-size: 14px;
-            color: #667eea;
-            font-weight: 600;
-            margin-bottom: 12px;
-        }
+        .fortune-date { text-align: center; font-size: 12px; color: #667eea; margin-bottom: 12px; }
         
-        .fortune-content {
-            background: white;
-            border-radius: 12px;
-            padding: 16px;
-            font-size: 14px;
-            line-height: 1.9;
-            color: #555;
-            white-space: pre-wrap;
-        }
+        .fortune-content { background: white; border-radius: 14px; padding: 16px; font-size: 14px; line-height: 1.9; color: #555; }
+        .fortune-content b { color: #667eea; }
         
-        .copy-btn {
-            width: 100%;
-            padding: 12px;
-            margin-top: 12px;
-            background: linear-gradient(135deg, #a8edea, #fed6e3);
-            color: #667eea;
-            border: none;
-            border-radius: 10px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
+        .fortune-section { margin-bottom: 12px; }
+        .fortune-section:last-child { margin-bottom: 0; }
         
-        .copy-btn:hover { transform: scale(1.02); }
+        .copy-btn { width: 100%; padding: 12px; margin-top: 12px; background: linear-gradient(135deg, #a8edea, #fed6e3); color: #667eea; border: none; border-radius: 10px; font-weight: 600; cursor: pointer; }
         
-        .tip {
-            text-align: center;
-            font-size: 12px;
-            color: #aaa;
-            margin-top: 20px;
-        }
+        .tip { text-align: center; font-size: 12px; color: #aaa; margin-top: 20px; }
         
-        .divider {
-            text-align: center;
-            margin: 20px 0;
-            color: #ccc;
-            font-size: 12px;
-        }
-        
-        .divider::before,
-        .divider::after {
-            content: "—";
-            margin: 0 10px;
-        }
+        .loading { text-align: center; padding: 20px; color: #667eea; }
     </style>
 </head>
 <body>
@@ -324,20 +114,10 @@
         
         <div class="card">
             <div class="numbers">
-                <div class="num-box">
-                    <label>上卦</label>
-                    <input type="number" id="shang" min="1" max="8" placeholder="☰">
-                </div>
-                <div class="num-box">
-                    <label>下卦</label>
-                    <input type="number" id="xia" min="1" max="8" placeholder="☷">
-                </div>
-                <div class="num-box">
-                    <label>动爻</label>
-                    <input type="number" id="dongyao" min="1" max="6" placeholder="⚡">
-                </div>
+                <div class="num-box"><label>上卦</label><input type="number" id="shang" min="1" max="8" placeholder="☰"></div>
+                <div class="num-box"><label>下卦</label><input type="number" id="xia" min="1" max="8" placeholder="☷"></div>
+                <div class="num-box"><label>动爻</label><input type="number" id="dongyao" min="1" max="6" placeholder="⚡"></div>
             </div>
-            
             <button class="btn btn-primary" onclick="showResult()">✨ 开始占卜</button>
             <button class="btn btn-secondary" onclick="randomNumbers()">🎲 随机</button>
         </div>
@@ -350,17 +130,7 @@
                     <div class="gua-ci" id="guaCi"></div>
                 </div>
                 
-                <div class="ai-btns">
-                    <button class="ai-btn btn-db" onclick="openDoubao()">
-                        🫛 豆包
-                    </button>
-                    <button class="ai-btn btn-km" onclick="openKimi()">
-                        🌙 Kimi
-                    </button>
-                    <button class="ai-btn btn-ml" onclick="generateLocal()">
-                        💫 解读
-                    </button>
-                </div>
+                <button class="btn-ai" onclick="generateFortune()">✨ 生成今日运势卡</button>
                 
                 <div id="fortuneCard"></div>
             </div>
@@ -373,16 +143,45 @@
         let currentResult = {};
         
         const BAGUA = {
-            1: { symbol: "☰", name: "乾", m: "天" }, 2: { symbol: "☱", name: "兑", m: "泽" },
-            3: { symbol: "☲", name: "离", m: "火" }, 4: { symbol: "☳", name: "震", m: "雷" },
-            5: { symbol: "☴", name: "巽", m: "风" }, 6: { symbol: "☵", name: "坎", m: "水" },
-            7: { symbol: "☶", name: "艮", m: "山" }, 8: { symbol: "☷", name: "坤", m: "地" }
+            1: { s: "☰", n: "乾", m: "天" }, 2: { s: "☱", n: "兑", m: "泽" },
+            3: { s: "☲", n: "离", m: "火" }, 4: { s: "☳", n: "震", m: "雷" },
+            5: { s: "☴", n: "巽", m: "风" }, 6: { s: "☵", n: "坎", m: "水" },
+            7: { s: "☶", n: "艮", m: "山" }, 8: { s: "☷", n: "坤", m: "地" }
         };
 
         const GUAXIANG = {
-            "1,1": { n: "乾为天", c: "元亨利贞" }, "1,8": { n: "天地否", c: "否之匪人" },
-            "3,5": { n: "火风鼎", c: "元吉" }, "8,5": { n: "地风升", c: "元亨" },
-            "5,3": { n: "风火家人", c: "利女贞" }
+            "1,1": { n: "乾为天", c: "元亨利贞" }, "1,2": { n: "天泽履", c: "履虎尾不咥人" },
+            "1,3": { n: "天火同人", c: "同人于野亨" }, "1,4": { n: "天雷无妄", c: "无妄往吉" },
+            "1,5": { n: "天风姤", c: "女壮勿用取女" }, "1,6": { n: "天山讼", c: "不利为寇" },
+            "1,7": { n: "天山遁", c: "遁而亨" }, "1,8": { n: "天地否", c: "否之匪人" },
+            "2,1": { n: "泽天夬", c: "扬于王庭" }, "2,2": { n: "兑为泽", c: "亨" },
+            "2,3": { n: "泽火革", c: "己日乃孚" }, "2,4": { n: "泽雷随", c: "元亨利贞" },
+            "2,5": { n: "泽风大过", c: "栋桡" }, "2,6": { n: "泽水困", c: "亨" },
+            "2,7": { n: "泽山咸", c: "亨利贞" }, "2,8": { n: "泽地萃", c: "亨" },
+            "3,1": { n: "火天大有", c: "元亨" }, "3,2": { n: "火泽睽", c: "小事吉" },
+            "3,3": { n: "离为火", c: "利贞亨" }, "3,4": { n: "火雷噬嗑", c: "亨" },
+            "3,5": { n: "火风鼎", c: "元吉" }, "3,6": { n: "水火既济", c: "亨小利贞" },
+            "3,7": { n: "火山旅", c: "小亨" }, "3,8": { n: "火地晋", c: "康侯用锡马" },
+            "4,1": { n: "雷天大壮", c: "利贞" }, "4,2": { n: "雷泽归妹", c: "征凶" },
+            "4,3": { n: "雷火丰", c: "亨" }, "4,4": { n: "震为雷", c: "亨" },
+            "4,5": { n: "雷风恒", c: "亨无咎" }, "4,6": { n: "雷水解", c: "利西南" },
+            "4,7": { n: "雷山小过", c: "亨利贞" }, "4,8": { n: "雷地豫", c: "利建侯行师" },
+            "5,1": { n: "风天小畜", c: "亨" }, "5,2": { n: "风泽中孚", c: "豚鱼吉" },
+            "5,3": { n: "风火家人", c: "利女贞" }, "5,4": { n: "风雷益", c: "利有攸往" },
+            "5,5": { n: "巽为风", c: "小亨" }, "5,6": { n: "风水涣", c: "亨" },
+            "5,7": { n: "风山渐", c: "女归吉" }, "5,8": { n: "风地观", c: "盥而不荐" },
+            "6,1": { n: "水天需", c: "贞吉亨" }, "6,2": { n: "水泽节", c: "亨" },
+            "6,3": { n: "水火未济", c: "亨" }, "6,4": { n: "水雷屯", c: "元亨利贞" },
+            "6,5": { n: "水风井", c: "改邑不改井" }, "6,6": { n: "坎为水", c: "习坎有孚" },
+            "6,7": { n: "水山蹇", c: "利西南" }, "6,8": { n: "水地比", c: "吉" },
+            "7,1": { n: "山天大畜", c: "利贞" }, "7,2": { n: "山泽损", c: "利贞" },
+            "7,3": { n: "山火贲", c: "亨" }, "7,4": { n: "山雷颐", c: "吉" },
+            "7,5": { n: "山风蛊", c: "元亨" }, "7,6": { n: "山水蒙", c: "亨" },
+            "7,7": { n: "艮为山", c: "艮其背不获其身" }, "7,8": { n: "山地谦", c: "亨" },
+            "8,1": { n: "地天泰", c: "小往大来" }, "8,2": { n: "地泽临", c: "元亨利贞" },
+            "8,3": { n: "地火明夷", c: "利艰贞" }, "8,4": { n: "地雷复", c: "亨" },
+            "8,5": { n: "地风升", c: "元亨" }, "8,6": { n: "地水师", c: "贞丈人吉" },
+            "8,7": { n: "地山谦", c: "亨" }, "8,8": { n: "坤为地", c: "元亨" }
         };
 
         function randomNumbers() {
@@ -399,14 +198,14 @@
             
             if (!q) { alert("先说说想问什么吧~"); return; }
             if (!s || !x || !d) { alert("输入三个数字哦~"); return; }
-            if (s < 1 || s > 8 || x < 1 || x > 8 || d < 1 || d > 6) { alert("数字范围：1-8, 1-6"); return; }
+            if (s < 1 || s > 8 || x < 1 || x > 8 || d < 1 || d > 6) { alert("数字范围：上卦1-8，下卦1-8，动爻1-6"); return; }
             
             const sg = BAGUA[s], xg = BAGUA[x];
-            const gua = GUAXIANG[`${s},${x}`] || { n: `${sg.name}${xg.name}卦`, c: "卦象已现" };
+            const gua = GUAXIANG[`${s},${x}`] || { n: `${sg.n}${xg.n}卦`, c: "卦象已现" };
             
             currentResult = { q, s, x, d, sg, xg, gua };
             
-            document.getElementById('guaSymbols').textContent = sg.symbol + xg.symbol;
+            document.getElementById('guaSymbols').textContent = sg.s + xg.s;
             document.getElementById('guaName').textContent = gua.n;
             document.getElementById('guaCi').textContent = gua.c;
             document.getElementById('fortuneCard').innerHTML = '';
@@ -415,62 +214,53 @@
             document.getElementById('result').scrollIntoView({ behavior: 'smooth' });
         }
 
-        function buildPrompt() {
-            const { q, sg, xg, gua, d } = currentResult;
-            return `问题：${q}\n\n卦象：${gua.n} — ${gua.c}\n上卦：${sg.name}（${sg.m}）\n下卦：${xg.name}（${xg.m}）\n动爻：第${d}爻\n\n请解读1.卦义 2.动爻 3.建议`;
-        }
-
-        function openDoubao() {
-            if (!currentResult.q) { alert("先占卜吧~"); return; }
-            window.open(`https://www.doubao.com/chat/?prompt=${encodeURIComponent(buildPrompt())}`, '_blank');
-        }
-
-        function openKimi() {
-            if (!currentResult.q) { alert("先占卜吧~"); return; }
-            window.open(`https://kimi.moonshot.cn/?prompt=${encodeURIComponent(buildPrompt())}`, '_blank');
-        }
-
-        function generateLocal() {
+        function generateFortune() {
             if (!currentResult.q) { alert("先占卜吧~"); return; }
             
-            const { q, sg, xg, gua, d } = currentResult;
+            const { q, s, x, d, sg, xg, gua } = currentResult;
             
             const dy = {
-                1: "初爻动——事情开端，变动萌芽。把握时机，主动出击！",
-                2: "二爻动——发展阶段，人事变化。留意身边机会。",
-                3: "三爻动——转折点。谨慎三思，勿冲动。",
-                4: "四爻动——环境变化。灵活应变，适应新况。",
-                5: "五爻动——关键时刻。把握机会，做出抉择。",
-                6: "上爻动——结束或新开始。总结经验，准备再战。"
+                1: "初爻动——事情既开端，变动既萌芽阶段。宜把握时机，主动出击！",
+                2: "二爻动——事情既发展，人际关系既变化。要注意同身边人既相处。",
+                3: "三爻动——事情既转折点。要谨慎，三思而后行，唔好冲动。",
+                4: "四爻动——环境既变化。灵活变通，适应新既情况。",
+                5: "五爻动——事情既关键点，决定性既时刻。把握机会，做出抉择。",
+                6: "上爻动——事情既结束或新既开始。总结经验，准备新一轮既开始。"
             };
             
             const adv = {
-                1: "💫 今日冲劲满满，想做就做！",
-                2: "💫 今日稳步前进，循序渐进~",
-                3: "💫 今日要三思，谨慎行事~",
-                4: "💫 今日灵活变通，逆境化机~",
-                5: "💫 今日关键抉择，影响全局！",
-                6: "💫 今日总结复盘，为明天做准备~"
+                1: "🎯 今日冲劲十足，有咩想做就趁今日啦！",
+                2: "🎯 今日稳打稳扎，循序渐进咁推进就最好啦。",
+                3: "🎯 今日要审时度势，三思而后行，唔好冲动呀！",
+                4: "🎯 今日几灵活变通，逆境都可以转化为机遇。",
+                5: "🎯 今日系关键日，做出既决定会影响成件事！",
+                6: "🎯 今日适合总结复盘，为下一步做好准备。"
             };
             
+            const today = new Date().toLocaleDateString('zh-CN', { year: 'numeric', month: 'long', day: 'numeric' });
+            
             const html = `
-                <div class="fortune">
-                    <div class="fortune-title">📖 今日运势</div>
+                <div class="fortune-card">
+                    <div class="fortune-date">📅 ${today}</div>
                     <div class="fortune-content">
-<b>问题：</b>${q}
-
-<b>卦象：</b>${gua.n} — ${gua.c}
-<b>上卦：</b>${sg.name}（${sg.m}）
-<b>下卦：</b>${xg.name}（${xg.m}）
-<b>动爻：</b>第${d}爻
-
-<b>⚡ 解读：</b>
-${dy[d]}
-
-<b>💡 建议：</b>
-${adv[d]}
-
-✨ 记住：卦象仅供参考，你的选择才最重要~
+                        <div class="fortune-section">
+                            <b>❓ 问题：</b>${q}
+                        </div>
+                        <div class="fortune-section">
+                            <b>🔯 卦象：</b>${gua.n} — ${gua.c}<br>
+                            <b>上卦：</b>${sg.n}（${sg.m}）<br>
+                            <b>下卦：</b>${xg.n}（${xg.m}）<br>
+                            <b>⚡ 动爻：</b>第${d}爻
+                        </div>
+                        <div class="fortune-section">
+                            <b>📖 动爻解读：</b><br>${dy[d]}
+                        </div>
+                        <div class="fortune-section">
+                            <b>💡 今日建议：</b><br>${adv[d]}
+                        </div>
+                        <div style="margin-top:12px;text-align:center;color:#999;font-size:12px;">
+                            🐱 记住：卦象只系参考，你既选择先系最紧要！
+                        </div>
                     </div>
                     <button class="copy-btn" onclick="copyResult()">📋 复制结果</button>
                 </div>
@@ -480,22 +270,11 @@ ${adv[d]}
         }
 
         function copyResult() {
-            const { q, sg, xg, gua, d } = currentResult;
-            const dy = {
-                1: "初爻动——事情开端，变动萌芽。把握时机，主动出击！",
-                2: "二爻动——发展阶段，人事变化。留意身边机会。",
-                3: "三爻动——转折点。谨慎三思，勿冲动。",
-                4: "四爻动——环境变化。灵活应变，适应新况。",
-                5: "五爻动——关键时刻。把握机会，做出抉择。",
-                6: "上爻动——结束或新开始。总结经验，准备再战。"
-            };
-            const adv = {
-                1: "💫 今日冲劲满满，想做就做！", 2: "💫 今日稳步前进，循序渐进~",
-                3: "💫 今日要三思，谨慎行事~", 4: "💫 今日灵活变通，逆境化机~",
-                5: "💫 今日关键抉择，影响全局！", 6: "💫 今日总结复盘，为明天做准备~"
-            };
+            const { q, s, x, d, sg, xg, gua } = currentResult;
+            const dy = { 1: "初爻动——事情既开端，变动既萌芽阶段。宜把握时机，主动出击！", 2: "二爻动——事情既发展，人际关系既变化。要注意同身边人既相处。", 3: "三爻动——事情既转折点。要谨慎，三思而后行，唔好冲动。", 4: "四爻动——环境既变化。灵活变通，适应新既情况。", 5: "五爻动——事情既关键点，决定性既时刻。把握机会，做出抉择。", 6: "上爻动——事情既结束或新既开始。总结经验，准备新一轮既开始。" };
+            const adv = { 1: "🎯 今日冲劲十足，有咩想做就趁今日啦！", 2: "🎯 今日稳打稳扎，循序渐进咁推进就最好啦。", 3: "🎯 今日要审时度势，三思而后行，唔好冲动呀！", 4: "🎯 今日几灵活变通，逆境都可以转化为机遇。", 5: "🎯 今日系关键日，做出既决定会影响成件事！", 6: "🎯 今日适合总结复盘，为下一步做好准备。" };
             
-            const text = `【今日运势】\n问题：${q}\n\n卦象：${gua.n} — ${gua.c}\n上卦：${sg.name}（${sg.m}）\n下卦：${xg.name}（${xg.m}）\n动爻：第${d}爻\n\n⚡ 解读：${dy[d]}\n\n💡 建议：${adv[d]}\n\n✨ 记住：你的选择才最重要~`;
+            const text = `【今日运势】\n问题：${q}\n\n卦象：${gua.n} — ${gua.c}\n上卦：${sg.n}（${sg.m}）\n下卦：${xg.n}（${xg.m}）\n动爻：第${d}爻\n\n📖 动爻解读：${dy[d]}\n\n💡 今日建议：${adv[d]}\n\n🐱 记住：卦象只系参考，你既选择先系最紧要！`;
             
             navigator.clipboard.writeText(text).then(() => alert("复制成功啦~"));
         }
