@@ -40,12 +40,12 @@
         .gua-symbols { font-size: 52px; letter-spacing: 12px; margin-bottom: 8px; }
         .gua-name { font-size: 22px; font-weight: 700; background: linear-gradient(90deg, #ff9a9e, #667eea); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .gua-ci { font-size: 13px; color: #aaa; margin-top: 4px; font-style: italic; }
-        .fortune-card { background: linear-gradient(135deg, rgba(255,154,158,0.15), rgba(168,237,234,0.15)); border-radius: 20px; padding: 20px; margin-top: 16px; border: 2px dashed var(--accent); }
-        .fortune-date { text-align: center; font-size: 12px; color: #667eea; margin-bottom: 12px; }
-        .fortune-content { background: white; border-radius: 14px; padding: 16px; font-size: 14px; line-height: 2; color: #555; white-space: pre-wrap; }
+        .fortune-card { background: linear-gradient(135deg, #fff5f5 0%, #fff9f0 50%, #f0f9ff 100%); border-radius: 24px; padding: 24px; margin-top: 20px; border: 3px solid transparent; background-clip: padding-box; position: relative; box-shadow: 0 10px 40px rgba(255,154,158,0.25); }
+        .fortune-date { text-align: center; font-size: 13px; color: #ff9a9e; margin-bottom: 16px; font-weight: 600; letter-spacing: 1px; }
+        .fortune-content { background: rgba(255,255,255,0.9); border-radius: 18px; padding: 20px; font-size: 15px; line-height: 2.2; color: #555; white-space: pre-wrap; box-shadow: inset 0 2px 10px rgba(255,154,158,0.1); }
         .copy-btn { width: 100%; padding: 12px; margin-top: 12px; background: linear-gradient(135deg, #a8edea, #fed6e3); color: #667eea; border: none; border-radius: 10px; font-weight: 600; cursor: pointer; }
         .tip { text-align: center; font-size: 12px; color: #aaa; margin-top: 20px; }
-        .zhufu-tip { text-align: center; margin-top: 16px; padding: 12px; background: linear-gradient(90deg, #ffd700, #ff8c00); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: bold; font-size: 14px; }
+        .zhufu-tip { text-align: center; margin-top: 20px; padding: 14px 20px; background: linear-gradient(135deg, #ffd700, #ffb347); border-radius: 30px; color: #fff; font-weight: bold; font-size: 14px; text-shadow: 0 1px 2px rgba(0,0,0,0.1); box-shadow: 0 4px 15px rgba(255,215,0,0.4); }
     </style>
 </head>
 <body>
@@ -78,7 +78,7 @@
                     <div class="gua-name" id="guaName"></div>
                     <div class="gua-ci" id="guaCi"></div>
                 </div>
-                <button class="btn-ai" onclick="generateFortune()">🫛 豆包AI解读</button>
+                <button class="btn-ai" onclick="generateFortune()">🫛 问问AI</button>
                 <div id="fortuneCard"></div>
             </div>
         </div>
@@ -180,7 +180,7 @@
             
             var fullReading="【卦象】\n"+gua.n+"——"+gua.c+"\n\n"+gua.d+"\n\n"+dyReading+typeSection;
             
-            var html='<div class="fortune-card"><div class="fortune-date">📅 '+today+'</div><div class="fortune-content">'+fullReading.replace(/\n/g,'<br>')+'</div><div class="zhufu-tip">✨ 如想要更准确结论，请找猪兜方丈 ✨</div></div><button class="copy-btn" onclick="copyResult()">📋 复制结果</button>';
+            var html='<div class="fortune-card"><div class="fortune-date">📅 '+today+'</div><div class="fortune-content">'+fullReading.replace(/\n/g,'<br>')+'</div><div class="zhufu-tip">✨ 想要更精确解读，请复制结果发给猪兜方丈 ✨</div></div><button class="copy-btn" onclick="copyResult()">📋 复制结果</button>';
             
             document.getElementById('fortuneCard').innerHTML=html;
         }
@@ -197,7 +197,7 @@
                 6:"【上爻动】——事情既结束或者新既开始，呢个阶段意味着你既问题即将告一段落。"
             };
             var dyReading=dongyaoReadings[d];
-            var text="【今日运势】\n问题："+q+"\n\n卦象："+gua.n+" — "+gua.c+"\n\n"+gua.d+"\n\n"+dyReading+"\n\n如想要更准确结论，请找猪兜方丈 ✨";
+            var text="【今日运势】\n问题："+q+"\n\n卦象："+gua.n+" — "+gua.c+"\n\n"+gua.d+"\n\n"+dyReading+"\n\n想要更精确解读，请复制结果发给猪兜方丈 ✨";
             navigator.clipboard.writeText(text).then(function(){alert("复制成功啦~");});
         }
     </script>
