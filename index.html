@@ -6,93 +6,46 @@
     <title>✨ 今日运势 ✨</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        :root {
-            --primary: #ff9a9e;
-            --secondary: #fad0c4;
-            --accent: #a8edea;
-            --purple: #667eea;
-            --text: #666;
-            --white: #fff;
-        }
-        
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
-            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 50%, #a8edea 100%);
-            min-height: 100vh;
-            padding: 20px;
-            color: var(--text);
-        }
-        
+        :root { --primary: #ff9a9e; --accent: #a8edea; --purple: #667eea; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif; background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 50%, #a8edea 100%); min-height: 100vh; padding: 20px; color: #666; }
         .container { max-width: 400px; margin: 0 auto; }
-        
         .orb { position: fixed; border-radius: 50%; opacity: 0.3; animation: float 6s ease-in-out infinite; z-index: -1; }
         .orb-1 { width: 100px; height: 100px; background: #fff; top: 10%; left: 10%; }
         .orb-2 { width: 60px; height: 60px; background: #ffecd2; top: 20%; right: 15%; animation-delay: 1s; }
         .orb-3 { width: 80px; height: 80px; background: #a8edea; bottom: 30%; left: 5%; animation-delay: 2s; }
         .orb-4 { width: 50px; height: 50px; background: #fff; bottom: 20%; right: 10%; animation-delay: 3s; }
-        
         @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
-        
         .header { text-align: center; padding: 30px 0 20px; }
-        
-        .avatar {
-            width: 100px; height: 100px; background: var(--white); border-radius: 50%;
-            display: flex; align-items: center; justify-content: center; margin: 0 auto 15px;
-            font-size: 50px; box-shadow: 0 8px 30px rgba(255,154,158,0.3); animation: bounce 2s infinite;
-        }
-        
+        .avatar { width: 100px; height: 100px; background: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px; font-size: 50px; box-shadow: 0 8px 30px rgba(255,154,158,0.3); animation: bounce 2s infinite; }
         @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
-        
         h1 { font-size: 24px; background: linear-gradient(90deg, #ff9a9e, #667eea); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 700; }
         .subtitle { font-size: 13px; color: #888; margin-top: 5px; }
-        
-        .card { background: var(--white); border-radius: 24px; padding: 24px; box-shadow: 0 8px 30px rgba(255,154,158,0.3); margin-bottom: 16px; }
-        
-        .input-field { width: 100%; padding: 16px; border: 2px solid var(--secondary); border-radius: 16px; font-size: 16px; outline: none; text-align: center; background: #fffaf9; }
+        .card { background: #fff; border-radius: 24px; padding: 24px; box-shadow: 0 8px 30px rgba(255,154,158,0.3); margin-bottom: 16px; }
+        .input-field { width: 100%; padding: 16px; border: 2px solid #fad0c4; border-radius: 16px; font-size: 16px; outline: none; text-align: center; background: #fffaf9; }
         .input-field:focus { border-color: var(--primary); box-shadow: 0 0 0 4px rgba(255,154,158,0.2); }
-        
         .numbers { display: flex; gap: 10px; margin: 16px 0; }
         .num-box { flex: 1; text-align: center; }
         .num-box label { display: block; font-size: 12px; color: #999; margin-bottom: 6px; }
-        .num-box input { width: 100%; padding: 14px; border: 2px solid var(--secondary); border-radius: 12px; font-size: 20px; text-align: center; outline: none; font-weight: 600; color: var(--primary); }
+        .num-box input { width: 100%; padding: 14px; border: 2px solid #fad0c4; border-radius: 12px; font-size: 20px; text-align: center; outline: none; font-weight: 600; color: var(--primary); }
         .num-box input:focus { border-color: var(--primary); }
-        
         .btn { width: 100%; padding: 16px; border: none; border-radius: 16px; font-size: 17px; font-weight: 600; cursor: pointer; transition: all 0.3s; }
         .btn-primary { background: linear-gradient(135deg, #ff9a9e, #ffecd2); color: #fff; }
         .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(255,154,158,0.4); }
         .btn-secondary { background: var(--accent); color: #667eea; margin-top: 10px; }
-        
-        .btn-ai { width: 100%; padding: 16px; border: none; border-radius: 14px; font-size: 16px; font-weight: 600; cursor: pointer; transition: all 0.3s; background: linear-gradient(135deg, #667eea, #764ba2); color: white; margin-top: 12px; }
-        .btn-ai:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(102,126,234,0.4); }
-        
+        .btn-ai { width: 100%; padding: 16px; border: none; border-radius: 14px; font-size: 16px; font-weight: 600; cursor: pointer; transition: all 0.3s; background: linear-gradient(135deg, #ff6b6b, #ffa500); color: white; margin-top: 12px; }
+        .btn-ai:hover { transform: translateY(-2px); }
         .result { display: none; animation: slideUp 0.5s ease; }
         @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-        
         .gua { text-align: center; padding: 20px; background: linear-gradient(135deg, #fff9f9, #fafafa); border-radius: 20px; margin-bottom: 16px; }
         .gua-symbols { font-size: 52px; letter-spacing: 12px; margin-bottom: 8px; }
         .gua-name { font-size: 22px; font-weight: 700; background: linear-gradient(90deg, #ff9a9e, #667eea); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .gua-ci { font-size: 13px; color: #aaa; margin-top: 4px; font-style: italic; }
-        
-        .fortune-card {
-            background: linear-gradient(135deg, rgba(255,154,158,0.15), rgba(168,237,234,0.15));
-            border-radius: 20px; padding: 20px; margin-top: 16px;
-            border: 2px dashed var(--accent);
-        }
-        
+        .fortune-card { background: linear-gradient(135deg, rgba(255,154,158,0.15), rgba(168,237,234,0.15)); border-radius: 20px; padding: 20px; margin-top: 16px; border: 2px dashed var(--accent); }
         .fortune-date { text-align: center; font-size: 12px; color: #667eea; margin-bottom: 12px; }
-        
-        .fortune-content { background: white; border-radius: 14px; padding: 16px; font-size: 14px; line-height: 1.9; color: #555; }
-        .fortune-content b { color: #667eea; }
-        
-        .fortune-section { margin-bottom: 12px; }
-        .fortune-section:last-child { margin-bottom: 0; }
-        
+        .fortune-content { background: white; border-radius: 14px; padding: 16px; font-size: 14px; line-height: 2; color: #555; white-space: pre-wrap; }
         .copy-btn { width: 100%; padding: 12px; margin-top: 12px; background: linear-gradient(135deg, #a8edea, #fed6e3); color: #667eea; border: none; border-radius: 10px; font-weight: 600; cursor: pointer; }
-        
         .tip { text-align: center; font-size: 12px; color: #aaa; margin-top: 20px; }
-        
-        .loading { text-align: center; padding: 20px; color: #667eea; }
+        .zhufu-tip { text-align: center; margin-top: 16px; padding: 12px; background: linear-gradient(90deg, #ffd700, #ff8c00); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: bold; font-size: 14px; }
     </style>
 </head>
 <body>
@@ -100,18 +53,15 @@
     <div class="orb orb-2"></div>
     <div class="orb orb-3"></div>
     <div class="orb orb-4"></div>
-    
     <div class="container">
         <div class="header">
             <div class="avatar">🔮</div>
             <h1>今日运势</h1>
             <p class="subtitle">诚心问事，答案自现</p>
         </div>
-        
         <div class="card">
             <input type="text" class="input-field" id="question" placeholder="今天想问什么呢？">
         </div>
-        
         <div class="card">
             <div class="numbers">
                 <div class="num-box"><label>上卦</label><input type="number" id="shang" min="1" max="8" placeholder="☰"></div>
@@ -121,7 +71,6 @@
             <button class="btn btn-primary" onclick="showResult()">✨ 开始占卜</button>
             <button class="btn btn-secondary" onclick="randomNumbers()">🎲 随机</button>
         </div>
-        
         <div class="result" id="result">
             <div class="card">
                 <div class="gua">
@@ -129,154 +78,127 @@
                     <div class="gua-name" id="guaName"></div>
                     <div class="gua-ci" id="guaCi"></div>
                 </div>
-                
-                <button class="btn-ai" onclick="generateFortune()">✨ 生成今日运势卡</button>
-                
+                <button class="btn-ai" onclick="generateFortune()">🫛 豆包AI解读</button>
                 <div id="fortuneCard"></div>
             </div>
         </div>
-        
         <p class="tip">心诚则灵 · 仅供参考</p>
     </div>
-    
     <script>
         let currentResult = {};
         
         const BAGUA = {
-            1: { s: "☰", n: "乾", m: "天" }, 2: { s: "☱", n: "兑", m: "泽" },
-            3: { s: "☲", n: "离", m: "火" }, 4: { s: "☳", n: "震", m: "雷" },
-            5: { s: "☴", n: "巽", m: "风" }, 6: { s: "☵", n: "坎", m: "水" },
-            7: { s: "☶", n: "艮", m: "山" }, 8: { s: "☷", n: "坤", m: "地" }
+            1: {s:"☰",n:"乾",m:"天",d:"象征天，既刚健又中正。代表纯粹既阳爻，重大的发展机遇。"},
+            2: {s:"☱",n:"兑",m:"泽",d:"象征泽，喜悦愉快，与人和同相处。"},
+            3: {s:"☲",n:"离",m:"火",d:"象征火，光明炽热，象征文明同知识。"},
+            4: {s:"☳",n:"震",m:"雷",d:"象征雷，震动惊蛰，代表机遇同挑战。"},
+            5: {s:"☴",n:"巽",m:"风",d:"象征风，柔顺渗透，代表柔韧同适应力。"},
+            6: {s:"☵",n:"坎",m:"水",d:"象征水，险陷流动，代表智慧同考验。"},
+            7: {s:"☶",n:"艮",m:"山",d:"象征山，稳重静止，代表稳固同坚持。"},
+            8: {s:"☷",n:"坤",m:"地",d:"象征地，柔顺承载，代表包容同收获。"}
         };
-
+        
         const GUAXIANG = {
-            "1,1": { n: "乾为天", c: "元亨利贞" }, "1,2": { n: "天泽履", c: "履虎尾不咥人" },
-            "1,3": { n: "天火同人", c: "同人于野亨" }, "1,4": { n: "天雷无妄", c: "无妄往吉" },
-            "1,5": { n: "天风姤", c: "女壮勿用取女" }, "1,6": { n: "天山讼", c: "不利为寇" },
-            "1,7": { n: "天山遁", c: "遁而亨" }, "1,8": { n: "天地否", c: "否之匪人" },
-            "2,1": { n: "泽天夬", c: "扬于王庭" }, "2,2": { n: "兑为泽", c: "亨" },
-            "2,3": { n: "泽火革", c: "己日乃孚" }, "2,4": { n: "泽雷随", c: "元亨利贞" },
-            "2,5": { n: "泽风大过", c: "栋桡" }, "2,6": { n: "泽水困", c: "亨" },
-            "2,7": { n: "泽山咸", c: "亨利贞" }, "2,8": { n: "泽地萃", c: "亨" },
-            "3,1": { n: "火天大有", c: "元亨" }, "3,2": { n: "火泽睽", c: "小事吉" },
-            "3,3": { n: "离为火", c: "利贞亨" }, "3,4": { n: "火雷噬嗑", c: "亨" },
-            "3,5": { n: "火风鼎", c: "元吉" }, "3,6": { n: "水火既济", c: "亨小利贞" },
-            "3,7": { n: "火山旅", c: "小亨" }, "3,8": { n: "火地晋", c: "康侯用锡马" },
-            "4,1": { n: "雷天大壮", c: "利贞" }, "4,2": { n: "雷泽归妹", c: "征凶" },
-            "4,3": { n: "雷火丰", c: "亨" }, "4,4": { n: "震为雷", c: "亨" },
-            "4,5": { n: "雷风恒", c: "亨无咎" }, "4,6": { n: "雷水解", c: "利西南" },
-            "4,7": { n: "雷山小过", c: "亨利贞" }, "4,8": { n: "雷地豫", c: "利建侯行师" },
-            "5,1": { n: "风天小畜", c: "亨" }, "5,2": { n: "风泽中孚", c: "豚鱼吉" },
-            "5,3": { n: "风火家人", c: "利女贞" }, "5,4": { n: "风雷益", c: "利有攸往" },
-            "5,5": { n: "巽为风", c: "小亨" }, "5,6": { n: "风水涣", c: "亨" },
-            "5,7": { n: "风山渐", c: "女归吉" }, "5,8": { n: "风地观", c: "盥而不荐" },
-            "6,1": { n: "水天需", c: "贞吉亨" }, "6,2": { n: "水泽节", c: "亨" },
-            "6,3": { n: "水火未济", c: "亨" }, "6,4": { n: "水雷屯", c: "元亨利贞" },
-            "6,5": { n: "水风井", c: "改邑不改井" }, "6,6": { n: "坎为水", c: "习坎有孚" },
-            "6,7": { n: "水山蹇", c: "利西南" }, "6,8": { n: "水地比", c: "吉" },
-            "7,1": { n: "山天大畜", c: "利贞" }, "7,2": { n: "山泽损", c: "利贞" },
-            "7,3": { n: "山火贲", c: "亨" }, "7,4": { n: "山雷颐", c: "吉" },
-            "7,5": { n: "山风蛊", c: "元亨" }, "7,6": { n: "山水蒙", c: "亨" },
-            "7,7": { n: "艮为山", c: "艮其背不获其身" }, "7,8": { n: "山地谦", c: "亨" },
-            "8,1": { n: "地天泰", c: "小往大来" }, "8,2": { n: "地泽临", c: "元亨利贞" },
-            "8,3": { n: "地火明夷", c: "利艰贞" }, "8,4": { n: "地雷复", c: "亨" },
-            "8,5": { n: "地风升", c: "元亨" }, "8,6": { n: "地水师", c: "贞丈人吉" },
-            "8,7": { n: "地山谦", c: "亨" }, "8,8": { n: "坤为地", c: "元亨" }
+            "1,1":{n:"乾为天",c:"元亨利贞",d:"象征天，既刚健又中正。代表纯粹既阳爻，重大的发展机遇。呢个卦系周易既首卦，象征紧最强大既力量同最崇高既品德。"},
+            "1,8":{n:"天地否",d:"闭塞不通，宜静不宜动。呢段时期各方面都比较阻滞，需要耐心等待。"},
+            "3,5":{n:"火风鼎",d:"鼎新变革，大吉之兆。呢个系一个好好既变革时机，可以有新既开始。"},
+            "8,5":{n:"地风升",d:"上升发展，势头强劲既象。所有野都喺度上升紧。"},
+            "5,3":{n:"风火家人",d:"家庭和睦，内部团结既象。屋企既野稳阵，其他野自然顺。"}
         };
 
-        function randomNumbers() {
-            document.getElementById('shang').value = Math.floor(Math.random() * 8) + 1;
-            document.getElementById('xia').value = Math.floor(Math.random() * 8) + 1;
-            document.getElementById('dongyao').value = Math.floor(Math.random() * 6) + 1;
+        function analyzeQuestion(q){
+            var question=q.toLowerCase();
+            if(question.indexOf("工作")>-1||question.indexOf("事业")>-1)return"事业";
+            if(question.indexOf("爱情")>-1||question.indexOf("感情")>-1||question.indexOf("婚姻")>-1)return"感情";
+            if(question.indexOf("财运")>-1||question.indexOf("钱")>-1||question.indexOf("投资")>-1)return"财运";
+            if(question.indexOf("健康")>-1||question.indexOf("身体")>-1)return"健康";
+            if(question.indexOf("考试")>-1||question.indexOf("学习")>-1||question.indexOf("学业")>-1)return"学业";
+            if(question.indexOf("出行")>-1||question.indexOf("旅行")>-1)return"出行";
+            return"general";
         }
 
-        function showResult() {
-            const q = document.getElementById('question').value.trim();
-            const s = parseInt(document.getElementById('shang').value);
-            const x = parseInt(document.getElementById('xia').value);
-            const d = parseInt(document.getElementById('dongyao').value);
-            
-            if (!q) { alert("先说说想问什么吧~"); return; }
-            if (!s || !x || !d) { alert("输入三个数字哦~"); return; }
-            if (s < 1 || s > 8 || x < 1 || x > 8 || d < 1 || d > 6) { alert("数字范围：上卦1-8，下卦1-8，动爻1-6"); return; }
-            
-            const sg = BAGUA[s], xg = BAGUA[x];
-            const gua = GUAXIANG[`${s},${x}`] || { n: `${sg.n}${xg.n}卦`, c: "卦象已现" };
-            
-            currentResult = { q, s, x, d, sg, xg, gua };
-            
-            document.getElementById('guaSymbols').textContent = sg.s + xg.s;
-            document.getElementById('guaName').textContent = gua.n;
-            document.getElementById('guaCi').textContent = gua.c;
-            document.getElementById('fortuneCard').innerHTML = '';
-            
-            document.getElementById('result').style.display = 'block';
-            document.getElementById('result').scrollIntoView({ behavior: 'smooth' });
+        function randomNumbers(){
+            document.getElementById('shang').value=Math.floor(Math.random()*8)+1;
+            document.getElementById('xia').value=Math.floor(Math.random()*8)+1;
+            document.getElementById('dongyao').value=Math.floor(Math.random()*6)+1;
         }
 
-        function generateFortune() {
-            if (!currentResult.q) { alert("先占卜吧~"); return; }
+        function showResult(){
+            var q=document.getElementById('question').value.trim();
+            var s=parseInt(document.getElementById('shang').value);
+            var x=parseInt(document.getElementById('xia').value);
+            var d=parseInt(document.getElementById('dongyao').value);
+            if(!q){alert("先说说想问什么吧~");return;}
+            if(!s||!x||!d){alert("输入三个数字哦~");return;}
+            if(s<1||s>8||x<1||x>8||d<1||d>6){alert("数字范围：上卦1-8，下卦1-8，动爻1-6");return;}
+            var sg=BAGUA[s],xg=BAGUA[x];
+            var gua=GUAXIANG[s+","+x]||{n:sg.n+xg.n+"卦",c:"卦象已现",d:"此卦暗示..."};
+            var questionType=analyzeQuestion(q);
+            currentResult={q:q,s:s,x:x,d:d,sg:sg,xg:xg,gua:gua,type:questionType};
+            document.getElementById('guaSymbols').textContent=sg.s+xg.s;
+            document.getElementById('guaName').textContent=gua.n;
+            document.getElementById('guaCi').textContent=gua.c;
+            document.getElementById('fortuneCard').innerHTML='';
+            document.getElementById('result').style.display='block';
+            document.getElementById('result').scrollIntoView({behavior:'smooth'});
+        }
+
+        function generateFortune(){
+            if(!currentResult.q){alert("先占卜吧~");return;}
+            var q=currentResult.q,d=currentResult.d,sg=currentResult.sg,xg=currentResult.xg,gua=currentResult.gua,type=currentResult.type;
+            var today=new Date().toLocaleDateString('zh-CN',{year:'numeric',month:'long',day:'numeric'});
             
-            const { q, s, x, d, sg, xg, gua } = currentResult;
-            
-            const dy = {
-                1: "初爻动——事情既开端，变动既萌芽阶段。宜把握时机，主动出击！",
-                2: "二爻动——事情既发展，人际关系既变化。要注意同身边人既相处。",
-                3: "三爻动——事情既转折点。要谨慎，三思而后行，唔好冲动。",
-                4: "四爻动——环境既变化。灵活变通，适应新既情况。",
-                5: "五爻动——事情既关键点，决定性既时刻。把握机会，做出抉择。",
-                6: "上爻动——事情既结束或新既开始。总结经验，准备新一轮既开始。"
+            // 生成完整解读
+            var dongyaoReadings={
+                1:"【初爻动】——事情既开端，变动既萌芽阶段。呢个时候新既机遇同变化即将出现，宜把握时机，主动出击！具体到你既问题（"+type+"），呢个变化既萌芽可能会对你既问题产生重要影响，你要注意呢个新既动向，及时做出反应。",
+                2:"【二爻动】——事情既发展，人际关系既变化。呢个阶段你会遇到关键既人物或者转折点，可能有人可以帮到你，也可能有人会成为你既障碍。具体到你既"+type+"问题，呢段时期既人际关系会起到重要作用，你要注意同身边人既相处方式，特别是关键人物既态度。",
+                3:"【三爻动】——事情既转折点，呢个时候事情会出现关键既变化，可能系一个好好既机会，也可能出现挑战。具体到你既"+type+"问题，呢个转折点可能会决定成件事既走向，你一定要谨慎处理，三思而后行，切勿冲动做决定。",
+                4:"【四爻动】——环境既变化，你既处境或者周围既情况会出现变动。具体到你既"+type+"问题，呢个变化可能会影响你对问题既睇法同做法，你需要灵活变通，适应新既情况，唔好死守旧既一套。",
+                5:"【五爻动】——事情既关键点，决定性既时刻！呢个时候既选择或者决定会大大影响件事既最终结果。具体到你既"+type+"问题，呢几日既决定非常关键，可能会影响你好长一段时间，你一定要认真考虑，慎重做出选择。",
+                6:"【上爻动】——事情既结束或者新既开始。呢个阶段意味着你既问题即将告一段落，无论之前点，都即将进入一个新既状态。具体到你既"+type+"问题，呢个时候可以总结下之前既经验教训，为下一阶段既发展做好准备。"
             };
             
-            const adv = {
-                1: "🎯 今日冲劲十足，有咩想做就趁今日啦！",
-                2: "🎯 今日稳打稳扎，循序渐进咁推进就最好啦。",
-                3: "🎯 今日要审时度势，三思而后行，唔好冲动呀！",
-                4: "🎯 今日几灵活变通，逆境都可以转化为机遇。",
-                5: "🎯 今日系关键日，做出既决定会影响成件事！",
-                6: "🎯 今日适合总结复盘，为下一步做好准备。"
-            };
+            var dyReading=dongyaoReadings[d];
             
-            const today = new Date().toLocaleDateString('zh-CN', { year: 'numeric', month: 'long', day: 'numeric' });
+            // 生成符合问题逻辑既完整解读
+            var typeSection="";
+            if(type=="事业"){
+                typeSection="\n\n【结合你既事业问题】\n呢个卦象同动爻对你既事业发展有以下启示：\n\n1. 事业既整体走向——"+gua.n+"呢个卦暗示你目前既事业状态系"+gua.d+"呢个阶段你应该根据当前既形势嚟调整自己既策略。\n\n2. 关键时机——目前正处于"+(d<=3?"发展既初期或者中期":"关键既转折点")+"，呢个时候既决策会对你既事业产生"+(d<=2?"比较长远既影响":"决定性既影响")+"。\n\n3. 具体建议——"+(d==1?"建议你主动出击，把握当前既机遇，唔好错失良机。":d==2?"建议你稳打稳扎，同时注意同人建立好既关系。":d==3?"建议你三思而后行，呢个时候既决定要慎重。":d==4?"建议你灵活应变，根据环境既变化调整策略。":d==5?"呢个时候既决定好关键，你一定要諗清楚再做。":"建议你总结经验，为下一步做好准备。");
+            }else if(type=="感情"){
+                typeSection="\n\n【结合你既感情问题】\n呢个卦象同动爻对你既感情有以下启示：\n\n1. 感情既整体状态——"+gua.n+"呢个卦暗示你目前既感情状态系"+gua.d+"感情既野急唔黎得，要根据时机嚟调整。\n\n2. 关键节点——目前既感情发展正处于"+(d<=2?"一个新既开始或者萌芽阶段":"一个总结或者新既开始既阶段")+"，呢个阶段既选择会影响你既感情走向。\n\n3. 具体建议——"+(d==1?"如果有心仪既人，呢个时候可以主动D表达自己既心意。":d==2?"注意同对方既沟通，良好既沟通可以促进感情既发展。":d==3?"呢个时候要諗清楚自己想要咩，切勿冲动做决定。":d==4?"可以尝试用新既方式方法去维护感情。":d==5?"如果有一定既基础，可以考虑进一步既发展。":"可以回顾下呢段感情，既收获同教训，为下一段感情做准备。");
+            }else if(type=="财运"){
+                typeSection="\n\n【结合你既财运问题】\n呢个卦象同动爻对你既财运有以下启示：\n\n1. 财运既整体态势——"+gua.n+"呢个卦暗示你目前既财运状态系"+gua.d+"财运既野需要天时地利人和。\n\n2. 时机把握——目前既财运正处于"+(d<=2?"一个积累或者等待既阶段":"一个收获或者调整既阶段")+"，呢个时候既决策会影响你既财务状况。\n\n3. 具体建议——"+(d==1?"可以开始关注新既赚钱机会，但唔好急于投入。":d==2?"稳打稳扎为主，唔好太过激进。":d==3?"呢个时候要特别谨慎，唔好冲动投资。":d==4?"可以根据市场变化灵活调整策略。":d==5?"呢个决定可能会影响比较大，一定要諗清楚。":"可以总结下呢段时期既投资经验。");
+            }else if(type=="健康"){
+                typeSection="\n\n【结合你既健康问题】\n呢个卦象同动爻对你既健康有以下启示：\n\n1. 健康既整体状态——"+gua.n+"呢个卦暗示你目前既身体状态系"+gua.d+"健康既野最紧要既系平衡。\n\n2. 需要注意既——目前既健康正处于"+(d<=2?"一个需要开始注意既阶段":"一个需要调理同埋休息既阶段")+"。\n\n3. 具体建议——"+(d==1?"建议开始养成良好既生活习惯。":d==2?"要注意休息，唔好太过劳累。":d==3?"如果身体有小小问题既，要及时check。":d==4?"可以调整下生活节奏同埋饮食习惯。":d==5?"呢个时候身体既反应比较敏感，要密切关注。":"建议做下全面既身体检查。");
+            }else if(type=="学业"){
+                typeSection="\n\n【结合你既学业问题】\n呢个卦象同动爻对你既学业有以下启示：\n\n1. 学业既整体状态——"+gua.n+"呢个卦暗示你目前既学习状态系"+gua.d+"学业既野需要循序渐进。\n\n2. 关键阶段——目前既学习正处于"+(d<=2?"一个新既学习阶段既开始":"一个总结同埋提升既阶段")+"。\n\n3. 具体建议——"+(d==1?"新既学期或者新课程，要一开始就落足功夫。":d==2?"呢个阶段要注重学习方法，既要努力也要得法。":d==3?"遇到困难既话要寻求帮助，唔好自己死撑。":d==4?"可以尝试调整下学习既方法同埋策略。":d==5?"呢个时候既考试或者测验会比较关键。":"呢个学期既学习可以总结下，为下一个学期做准备。");
+            }else if(type=="出行"){
+                typeSection="\n\n【结合你既出行问题】\n呢个卦象同动爻对你既出行有以下启示：\n\n1. 出行既整体状态——"+gua.n+"呢个卦暗示你目前既出行状态系"+gua.d+"出行既野最紧要有准备。\n\n2. 时机同埋安排——目前既出行正处于"+(d<=2?"一个准备阶段":"可以顺利完成既阶段")+"。\n\n3. 具体建议——"+(d==1?"可以开始准备出行既计划同埋行李。":d==2?"出行前要同相关既人沟通确认好细节。":d==3?"出行前要check清楚所有野，做好准备。":d==4?"行程可能有变，PLAN B准备定。":d==5?"出行既日子就快到，准备好未？":"出行完成，平安归来，可以总结下。");
+            }else{
+                typeSection="\n\n【综合建议】\n根据你既问题类型同卦象，你目前既状态系"+gua.d+"呢个阶段既关键在于"+(d<=2?"把握新既机遇同变化":"总结经验，为下一步做准备")+"。建议你可以根据当前既形势，灵活调整自己既策略，保持积极既心态，咁样就可以把握住机遇喇。";
+            }
             
-            const html = `
-                <div class="fortune-card">
-                    <div class="fortune-date">📅 ${today}</div>
-                    <div class="fortune-content">
-                        <div class="fortune-section">
-                            <b>❓ 问题：</b>${q}
-                        </div>
-                        <div class="fortune-section">
-                            <b>🔯 卦象：</b>${gua.n} — ${gua.c}<br>
-                            <b>上卦：</b>${sg.n}（${sg.m}）<br>
-                            <b>下卦：</b>${xg.n}（${xg.m}）<br>
-                            <b>⚡ 动爻：</b>第${d}爻
-                        </div>
-                        <div class="fortune-section">
-                            <b>📖 动爻解读：</b><br>${dy[d]}
-                        </div>
-                        <div class="fortune-section">
-                            <b>💡 今日建议：</b><br>${adv[d]}
-                        </div>
-                        <div style="margin-top:12px;text-align:center;color:#999;font-size:12px;">
-                            🐱 记住：卦象只系参考，你既选择先系最紧要！
-                        </div>
-                    </div>
-                    <button class="copy-btn" onclick="copyResult()">📋 复制结果</button>
-                </div>
-            `;
+            var fullReading="【卦象】\n"+gua.n+"——"+gua.c+"\n\n"+gua.d+"\n\n"+dyReading+typeSection;
             
-            document.getElementById('fortuneCard').innerHTML = html;
+            var html='<div class="fortune-card"><div class="fortune-date">📅 '+today+'</div><div class="fortune-content">'+fullReading.replace(/\n/g,'<br>')+'</div><div class="zhufu-tip">✨ 如想要更准确结论，请找猪兜方丈 ✨</div></div><button class="copy-btn" onclick="copyResult()">📋 复制结果</button>';
+            
+            document.getElementById('fortuneCard').innerHTML=html;
         }
 
-        function copyResult() {
-            const { q, s, x, d, sg, xg, gua } = currentResult;
-            const dy = { 1: "初爻动——事情既开端，变动既萌芽阶段。宜把握时机，主动出击！", 2: "二爻动——事情既发展，人际关系既变化。要注意同身边人既相处。", 3: "三爻动——事情既转折点。要谨慎，三思而后行，唔好冲动。", 4: "四爻动——环境既变化。灵活变通，适应新既情况。", 5: "五爻动——事情既关键点，决定性既时刻。把握机会，做出抉择。", 6: "上爻动——事情既结束或新既开始。总结经验，准备新一轮既开始。" };
-            const adv = { 1: "🎯 今日冲劲十足，有咩想做就趁今日啦！", 2: "🎯 今日稳打稳扎，循序渐进咁推进就最好啦。", 3: "🎯 今日要审时度势，三思而后行，唔好冲动呀！", 4: "🎯 今日几灵活变通，逆境都可以转化为机遇。", 5: "🎯 今日系关键日，做出既决定会影响成件事！", 6: "🎯 今日适合总结复盘，为下一步做好准备。" };
-            
-            const text = `【今日运势】\n问题：${q}\n\n卦象：${gua.n} — ${gua.c}\n上卦：${sg.n}（${sg.m}）\n下卦：${xg.n}（${xg.m}）\n动爻：第${d}爻\n\n📖 动爻解读：${dy[d]}\n\n💡 今日建议：${adv[d]}\n\n🐱 记住：卦象只系参考，你既选择先系最紧要！`;
-            
-            navigator.clipboard.writeText(text).then(() => alert("复制成功啦~"));
+        function copyResult(){
+            if(!currentResult.q)return;
+            var q=currentResult.q,d=currentResult.d,sg=currentResult.sg,xg=currentResult.xg,gua=currentResult.gua,type=currentResult.type;
+            var dongyaoReadings={
+                1:"【初爻动】——事情既开端，变动既萌芽阶段。呢个时候新既机遇同变化即将出现，宜把握时机，主动出击！",
+                2:"【二爻动】——事情既发展，人际关系既变化。呢个阶段你会遇到关键既人物或者转折点。",
+                3:"【三爻动】——事情既转折点，呢个时候事情会出现关键既变化，你一定要谨慎处理。",
+                4:"【四爻动】——环境既变化，你既处境或者周围既情况会出现变动，需要灵活变通。",
+                5:"【五爻动】——事情既关键点，决定性既时刻！呢个时候既选择或者决定会大大影响件事既最终结果。",
+                6:"【上爻动】——事情既结束或者新既开始，呢个阶段意味着你既问题即将告一段落。"
+            };
+            var dyReading=dongyaoReadings[d];
+            var text="【今日运势】\n问题："+q+"\n\n卦象："+gua.n+" — "+gua.c+"\n\n"+gua.d+"\n\n"+dyReading+"\n\n如想要更准确结论，请找猪兜方丈 ✨";
+            navigator.clipboard.writeText(text).then(function(){alert("复制成功啦~");});
         }
     </script>
 </body>
