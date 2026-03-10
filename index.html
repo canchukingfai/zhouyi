@@ -3,260 +3,386 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🐱 周易小精灵占卜 🐱</title>
+    <title>✨ 今日运势 ✨</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", Arial, sans-serif;
-            background: linear-gradient(180deg, #ffecd2 0%, #fcb69f 100%);
-            min-height: 100vh;
-            padding: 20px;
-            color: #5a4a4a;
+        :root {
+            --primary: #ff9a9e;
+            --secondary: #fad0c4;
+            --accent: #a8edea;
+            --text: #666;
+            --white: #fff;
+            --shadow: 0 8px 30px rgba(255, 154, 158, 0.3);
         }
         
-        .container { max-width: 420px; margin: 0 auto; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 50%, #a8edea 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: var(--text);
+        }
         
-        .header { text-align: center; margin-bottom: 24px; }
+        .container { 
+            max-width: 400px; 
+            margin: 0 auto;
+        }
         
-        .logo { font-size: 72px; animation: bounce 2s infinite; }
+        /* 装饰圆球 */
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            opacity: 0.3;
+            animation: float 6s ease-in-out infinite;
+            z-index: -1;
+        }
+        .orb-1 { width: 100px; height: 100px; background: #fff; top: 10%; left: 10%; animation-delay: 0s; }
+        .orb-2 { width: 60px; height: 60px; background: #ffecd2; top: 20%; right: 15%; animation-delay: 1s; }
+        .orb-3 { width: 80px; height: 80px; background: #a8edea; bottom: 30%; left: 5%; animation-delay: 2s; }
+        .orb-4 { width: 50px; height: 50px; background: #fff; bottom: 20%; right: 10%; animation-delay: 3s; }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
+        }
+        
+        .header {
+            text-align: center;
+            padding: 30px 0 20px;
+        }
+        
+        .avatar {
+            width: 100px;
+            height: 100px;
+            background: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            font-size: 50px;
+            box-shadow: var(--shadow);
+            animation: bounce 2s ease-in-out infinite;
+        }
         
         @keyframes bounce {
             0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+            50% { transform: translateY(-8px); }
         }
         
-        h1 { font-size: 26px; color: #ff6b9d; text-shadow: 2px 2px 0 #fff; margin: 12px 0; }
-        .subtitle { color: #999; font-size: 14px; }
+        h1 {
+            font-size: 24px;
+            background: linear-gradient(90deg, #ff9a9e, #667eea);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+        }
+        
+        .subtitle {
+            font-size: 13px;
+            color: #888;
+            margin-top: 5px;
+        }
         
         .card {
-            background: #fff;
+            background: var(--white);
             border-radius: 24px;
             padding: 24px;
-            box-shadow: 0 8px 32px rgba(255, 107, 157, 0.15);
-            margin-bottom: 20px;
+            box-shadow: var(--shadow);
+            margin-bottom: 16px;
+            border: 1px solid rgba(255,255,255,0.5);
         }
         
-        .question-label { font-size: 18px; color: #ff6b9d; margin-bottom: 16px; text-align: center; }
-        
-        .question-input {
+        .input-field {
             width: 100%;
-            padding: 16px 20px;
-            border: 3px solid #ffd1dc;
+            padding: 16px;
+            border: 2px solid var(--secondary);
             border-radius: 16px;
             font-size: 16px;
             outline: none;
             transition: all 0.3s;
             text-align: center;
+            background: #fffaf9;
         }
         
-        .question-input:focus { border-color: #ff6b9d; box-shadow: 0 0 20px rgba(255, 107, 157, 0.2); }
+        .input-field:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(255, 154, 158, 0.2);
+        }
         
-        .input-section { display: flex; gap: 8px; margin: 20px 0; }
+        .numbers {
+            display: flex;
+            gap: 10px;
+            margin: 16px 0;
+        }
         
-        .input-wrapper { flex: 1; text-align: center; }
+        .num-box {
+            flex: 1;
+            text-align: center;
+        }
         
-        .input-wrapper label { display: block; font-size: 12px; color: #ff6b9d; margin-bottom: 8px; font-weight: bold; }
+        .num-box label {
+            display: block;
+            font-size: 12px;
+            color: #999;
+            margin-bottom: 6px;
+        }
         
-        .input-wrapper input {
+        .num-box input {
             width: 100%;
-            padding: 12px;
-            border: 3px solid #ffd1dc;
+            padding: 14px;
+            border: 2px solid var(--secondary);
             border-radius: 12px;
-            font-size: 18px;
+            font-size: 20px;
             text-align: center;
             outline: none;
             transition: all 0.3s;
+            font-weight: 600;
+            color: var(--primary);
         }
         
-        .input-wrapper input:focus { border-color: #ff6b9d; }
+        .num-box input:focus {
+            border-color: var(--primary);
+        }
         
         .btn {
             width: 100%;
             padding: 16px;
             border: none;
             border-radius: 16px;
-            font-size: 18px;
-            font-weight: bold;
+            font-size: 17px;
+            font-weight: 600;
             cursor: pointer;
             transition: all 0.3s;
-            margin-bottom: 12px;
         }
         
         .btn-primary {
-            background: linear-gradient(135deg, #ff6b9d, #ffa3c4);
-            color: white;
-            box-shadow: 0 4px 15px rgba(255, 107, 157, 0.4);
+            background: linear-gradient(135deg, #ff9a9e, #ffecd2);
+            color: #fff;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.1);
         }
         
-        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(255, 107, 157, 0.5); }
-        
-        .btn-secondary { background: linear-gradient(135deg, #a8edea, #fed6e3); color: #ff6b9d; }
-        
-        .ai-section { margin-top: 16px; }
-        
-        .ai-label { font-size: 14px; color: #999; text-align: center; margin-bottom: 12px; }
-        
-        .ai-buttons { display: flex; gap: 8px; }
-        
-        .btn-ai {
-            flex: 1;
-            padding: 14px 8px;
-            border: none;
-            border-radius: 12px;
-            font-size: 14px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 4px;
-            color: white;
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 154, 158, 0.4);
         }
         
-        .btn-doubao { background: linear-gradient(135deg, #ff6b6b, #ffa500); }
-        .btn-kimi { background: linear-gradient(135deg, #4facfe, #00f2fe); }
-        .btn-merlin { background: linear-gradient(135deg, #667eea, #764ba2); }
+        .btn-secondary {
+            background: var(--accent);
+            color: #667eea;
+            margin-top: 10px;
+        }
         
-        .btn-ai:hover { transform: translateY(-2px); }
-        
-        .result { display: none; animation: slideUp 0.5s ease; }
+        .result { 
+            display: none; 
+            animation: slideUp 0.5s ease;
+        }
         
         @keyframes slideUp {
             from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
         }
         
-        .gua-display {
+        .gua {
             text-align: center;
             padding: 20px;
-            background: linear-gradient(135deg, #fff5f5, #fff);
+            background: linear-gradient(135deg, #fff9f9, #fafafa);
             border-radius: 20px;
             margin-bottom: 16px;
         }
         
-        .gua-symbols { font-size: 56px; margin-bottom: 12px; letter-spacing: 8px; }
-        .gua-name { font-size: 24px; color: #ff6b9d; font-weight: bold; margin-bottom: 8px; }
-        .gua-ci { color: #999; font-size: 14px; font-style: italic; }
-        
-        .fortune-card {
-            background: linear-gradient(135deg, #667eea20, #764ba220);
-            border-radius: 16px;
-            padding: 16px;
-            margin-top: 16px;
-            border: 2px solid #667eea;
+        .gua-symbols {
+            font-size: 52px;
+            letter-spacing: 12px;
+            margin-bottom: 8px;
         }
         
-        .fortune-header { text-align: center; margin-bottom: 12px; }
-        .fortune-title { font-size: 16px; color: #667eea; font-weight: bold; }
+        .gua-name {
+            font-size: 22px;
+            font-weight: 700;
+            background: linear-gradient(90deg, #ff9a9e, #667eea);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .gua-ci {
+            font-size: 13px;
+            color: #aaa;
+            margin-top: 4px;
+            font-style: italic;
+        }
+        
+        .ai-btns {
+            display: flex;
+            gap: 8px;
+            margin-top: 16px;
+        }
+        
+        .ai-btn {
+            flex: 1;
+            padding: 14px 8px;
+            border: none;
+            border-radius: 14px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+        }
+        
+        .ai-btn:hover { transform: translateY(-2px); }
+        
+        .btn-db { background: linear-gradient(135deg, #ff6b6b, #ffa500); }
+        .btn-km { background: linear-gradient(135deg, #667eea, #764ba2); }
+        .btn-ml { background: linear-gradient(135deg, #a8edea, #fed6e3); color: #667eea; }
+        
+        .fortune {
+            background: linear-gradient(135deg, rgba(255,154,158,0.1), rgba(168,237,234,0.1));
+            border-radius: 16px;
+            padding: 20px;
+            margin-top: 16px;
+            border: 2px dashed var(--accent);
+        }
+        
+        .fortune-title {
+            text-align: center;
+            font-size: 14px;
+            color: #667eea;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
         
         .fortune-content {
-            background: #fff;
+            background: white;
             border-radius: 12px;
-            padding: 14px;
+            padding: 16px;
             font-size: 14px;
-            line-height: 1.8;
-            color: #666;
+            line-height: 1.9;
+            color: #555;
             white-space: pre-wrap;
         }
         
         .copy-btn {
             width: 100%;
-            padding: 10px;
+            padding: 12px;
             margin-top: 12px;
-            background: #667eea;
-            color: white;
+            background: linear-gradient(135deg, #a8edea, #fed6e3);
+            color: #667eea;
             border: none;
-            border-radius: 8px;
-            font-size: 14px;
+            border-radius: 10px;
+            font-weight: 600;
             cursor: pointer;
+            transition: all 0.3s;
         }
         
-        .disclaimer { text-align: center; font-size: 12px; color: #bbb; margin-top: 20px; }
+        .copy-btn:hover { transform: scale(1.02); }
+        
+        .tip {
+            text-align: center;
+            font-size: 12px;
+            color: #aaa;
+            margin-top: 20px;
+        }
+        
+        .divider {
+            text-align: center;
+            margin: 20px 0;
+            color: #ccc;
+            font-size: 12px;
+        }
+        
+        .divider::before,
+        .divider::after {
+            content: "—";
+            margin: 0 10px;
+        }
     </style>
 </head>
 <body>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+    <div class="orb orb-4"></div>
+    
     <div class="container">
         <div class="header">
-            <div class="logo">🐱</div>
-            <h1>周易小精灵占卜</h1>
-            <p class="subtitle">用心提问，答案自会出现 ✨</p>
-        </div>
-        
-        <div class="card question-box">
-            <div class="question-label">💭 你想问什么？</div>
-            <input type="text" class="question-input" id="question" placeholder="例如：今日工作顺利吗？">
+            <div class="avatar">🔮</div>
+            <h1>今日运势</h1>
+            <p class="subtitle">诚心问事，答案自现</p>
         </div>
         
         <div class="card">
-            <div class="input-section">
-                <div class="input-wrapper">
-                    <label>上卦 ☰</label>
-                    <input type="number" id="shang" min="1" max="8" placeholder="1-8">
-                </div>
-                <div class="input-wrapper">
-                    <label>下卦 ☷</label>
-                    <input type="number" id="xia" min="1" max="8" placeholder="1-8">
-                </div>
-                <div class="input-wrapper">
-                    <label>动爻 ⚡</label>
-                    <input type="number" id="dongyao" min="1" max="6" placeholder="1-6">
-                </div>
-            </div>
-            
-            <button class="btn btn-primary" onclick="showResult()">🔮 开始占卜</button>
-            <button class="btn btn-secondary" onclick="randomNumbers()">🎲 随机生成</button>
+            <input type="text" class="input-field" id="question" placeholder="今天想问什么呢？">
         </div>
         
-        <div class="card result" id="result">
-            <div class="gua-display">
-                <div class="gua-symbols" id="guaSymbols"></div>
-                <div class="gua-name" id="guaName"></div>
-                <div class="gua-ci" id="guaCi"></div>
-            </div>
-            
-            <div class="ai-section">
-                <p class="ai-label">🤖 搵AI帮你解读：</p>
-                <div class="ai-buttons">
-                    <button class="btn-ai btn-doubao" onclick="openDoubao()">
-                        <span>🫛</span> 豆包
-                    </button>
-                    <button class="btn-ai btn-kimi" onclick="openKimi()">
-                        <span>🌙</span> Kimi
-                    </button>
-                    <button class="btn-ai btn-merlin" onclick="generateLocal()">
-                        <span>🧙</span> 解读
-                    </button>
+        <div class="card">
+            <div class="numbers">
+                <div class="num-box">
+                    <label>上卦</label>
+                    <input type="number" id="shang" min="1" max="8" placeholder="☰">
+                </div>
+                <div class="num-box">
+                    <label>下卦</label>
+                    <input type="number" id="xia" min="1" max="8" placeholder="☷">
+                </div>
+                <div class="num-box">
+                    <label>动爻</label>
+                    <input type="number" id="dongyao" min="1" max="6" placeholder="⚡">
                 </div>
             </div>
             
-            <div id="fortuneCard"></div>
+            <button class="btn btn-primary" onclick="showResult()">✨ 开始占卜</button>
+            <button class="btn btn-secondary" onclick="randomNumbers()">🎲 随机</button>
         </div>
         
-        <p class="disclaimer">卦象仅供参考<br>一切决定权在你手中 🐱</p>
+        <div class="result" id="result">
+            <div class="card">
+                <div class="gua">
+                    <div class="gua-symbols" id="guaSymbols"></div>
+                    <div class="gua-name" id="guaName"></div>
+                    <div class="gua-ci" id="guaCi"></div>
+                </div>
+                
+                <div class="ai-btns">
+                    <button class="ai-btn btn-db" onclick="openDoubao()">
+                        🫛 豆包
+                    </button>
+                    <button class="ai-btn btn-km" onclick="openKimi()">
+                        🌙 Kimi
+                    </button>
+                    <button class="ai-btn btn-ml" onclick="generateLocal()">
+                        💫 解读
+                    </button>
+                </div>
+                
+                <div id="fortuneCard"></div>
+            </div>
+        </div>
+        
+        <p class="tip">心诚则灵 · 仅供参考</p>
     </div>
     
     <script>
         let currentResult = {};
         
         const BAGUA = {
-            1: { symbol: "☰", name: "乾", meaning: "天" },
-            2: { symbol: "☱", name: "兑", meaning: "泽" },
-            3: { symbol: "☲", name: "离", meaning: "火" },
-            4: { symbol: "☳", name: "震", meaning: "雷" },
-            5: { symbol: "☴", name: "巽", meaning: "风" },
-            6: { symbol: "☵", name: "坎", meaning: "水" },
-            7: { symbol: "☶", name: "艮", meaning: "山" },
-            8: { symbol: "☷", name: "坤", meaning: "地" }
+            1: { symbol: "☰", name: "乾", m: "天" }, 2: { symbol: "☱", name: "兑", m: "泽" },
+            3: { symbol: "☲", name: "离", m: "火" }, 4: { symbol: "☳", name: "震", m: "雷" },
+            5: { symbol: "☴", name: "巽", m: "风" }, 6: { symbol: "☵", name: "坎", m: "水" },
+            7: { symbol: "☶", name: "艮", m: "山" }, 8: { symbol: "☷", name: "坤", m: "地" }
         };
 
         const GUAXIANG = {
-            "1,1": { name: "乾为天", ci: "元亨利贞" },
-            "1,8": { name: "天地否", ci: "否之匪人" },
-            "3,5": { name: "火风鼎", ci: "元吉" },
-            "8,5": { name: "地风升", ci: "元亨" },
-            "5,3": { name: "风火家人", ci: "利女贞" }
+            "1,1": { n: "乾为天", c: "元亨利贞" }, "1,8": { n: "天地否", c: "否之匪人" },
+            "3,5": { n: "火风鼎", c: "元吉" }, "8,5": { n: "地风升", c: "元亨" },
+            "5,3": { n: "风火家人", c: "利女贞" }
         };
 
         function randomNumbers() {
@@ -266,27 +392,23 @@
         }
 
         function showResult() {
-            const question = document.getElementById('question').value.trim();
-            const shang = parseInt(document.getElementById('shang').value);
-            const xia = parseInt(document.getElementById('xia').value);
-            const dongyao = parseInt(document.getElementById('dongyao').value);
+            const q = document.getElementById('question').value.trim();
+            const s = parseInt(document.getElementById('shang').value);
+            const x = parseInt(document.getElementById('xia').value);
+            const d = parseInt(document.getElementById('dongyao').value);
             
-            if (!question) { alert("💭 请先输入你的问题~"); return; }
-            if (!shang || !xia || !dongyao) { alert("🔢 请输入三个数字~"); return; }
-            if (shang < 1 || shang > 8 || xia < 1 || xia > 8 || dongyao < 1 || dongyao > 6) {
-                alert("📝 数字范围：上卦1-8，下卦1-8，动爻1-6"); return;
-            }
+            if (!q) { alert("先说说想问什么吧~"); return; }
+            if (!s || !x || !d) { alert("输入三个数字哦~"); return; }
+            if (s < 1 || s > 8 || x < 1 || x > 8 || d < 1 || d > 6) { alert("数字范围：1-8, 1-6"); return; }
             
-            const shangGua = BAGUA[shang];
-            const xiaGua = BAGUA[xia];
-            const guaKey = `${shang},${xia}`;
-            const gua = GUAXIANG[guaKey] || { name: `${shangGua.name}${xiaGua.name}卦`, ci: "卦象已现" };
+            const sg = BAGUA[s], xg = BAGUA[x];
+            const gua = GUAXIANG[`${s},${x}`] || { n: `${sg.name}${xg.name}卦`, c: "卦象已现" };
             
-            currentResult = { question, shang, xia, dongyao, shangGua, xiaGua, gua };
+            currentResult = { q, s, x, d, sg, xg, gua };
             
-            document.getElementById('guaSymbols').textContent = shangGua.symbol + xiaGua.symbol;
-            document.getElementById('guaName').textContent = gua.name;
-            document.getElementById('guaCi').textContent = gua.ci;
+            document.getElementById('guaSymbols').textContent = sg.symbol + xg.symbol;
+            document.getElementById('guaName').textContent = gua.n;
+            document.getElementById('guaCi').textContent = gua.c;
             document.getElementById('fortuneCard').innerHTML = '';
             
             document.getElementById('result').style.display = 'block';
@@ -294,67 +416,61 @@
         }
 
         function buildPrompt() {
-            const { question, shangGua, xiaGua, gua, dongyao } = currentResult;
-            return `我的问题是：${question}\n\n卦象：\n- 上卦：${shangGua.name}（${shangGua.meaning}）\n- 下卦：${xiaGua.name}（${xiaGua.meaning}）\n- 卦名：${gua.name}\n- 卦辞：${gua.ci}\n- 动爻：第${dongyao}爻\n\n请解读：1.卦象含义 2.动爻解读 3.对问题的建议`;
+            const { q, sg, xg, gua, d } = currentResult;
+            return `问题：${q}\n\n卦象：${gua.n} — ${gua.c}\n上卦：${sg.name}（${sg.m}）\n下卦：${xg.name}（${xg.m}）\n动爻：第${d}爻\n\n请解读1.卦义 2.动爻 3.建议`;
         }
 
         function openDoubao() {
-            if (!currentResult.question) { alert("💭 请先输入问题并占卜~"); return; }
+            if (!currentResult.q) { alert("先占卜吧~"); return; }
             window.open(`https://www.doubao.com/chat/?prompt=${encodeURIComponent(buildPrompt())}`, '_blank');
         }
 
         function openKimi() {
-            if (!currentResult.question) { alert("💭 请先输入问题并占卜~"); return; }
+            if (!currentResult.q) { alert("先占卜吧~"); return; }
             window.open(`https://kimi.moonshot.cn/?prompt=${encodeURIComponent(buildPrompt())}`, '_blank');
         }
 
         function generateLocal() {
-            if (!currentResult.question) { alert("💭 请先输入问题并占卜~"); return; }
+            if (!currentResult.q) { alert("先占卜吧~"); return; }
             
-            const { question, shangGua, xiaGua, gua, dongyao } = currentResult;
+            const { q, sg, xg, gua, d } = currentResult;
             
-            const dongyaoMeanings = {
-                1: "初爻动——事情既开始，变动既萌芽阶段。宜把握时机，主动出击！",
-                2: "二爻动——事情既发展，人际关系既变化。要注意同身边人既相处。",
-                3: "三爻动——事情既转折点。要谨慎，三思而后行，唔好冲动。",
-                4: "四爻动——环境既变化。灵活变通，适应新既情况。",
-                5: "五爻动——事情既关键点，决定性既时刻。把握机会，做出抉择。",
-                6: "上爻动——事情既结束或新既开始。总结经验，准备新一轮既开始。"
+            const dy = {
+                1: "初爻动——事情开端，变动萌芽。把握时机，主动出击！",
+                2: "二爻动——发展阶段，人事变化。留意身边机会。",
+                3: "三爻动——转折点。谨慎三思，勿冲动。",
+                4: "四爻动——环境变化。灵活应变，适应新况。",
+                5: "五爻动——关键时刻。把握机会，做出抉择。",
+                6: "上爻动——结束或新开始。总结经验，准备再战。"
             };
             
-            const advice = {
-                1: "🎯 今日冲劲十足，有咩想做就趁今日啦！",
-                2: "今日稳打稳扎，循序渐进咁推进就最好啦。",
-                3: "今日要审时度势，三思而后行，唔好冲动呀！",
-                4: "今日几灵活变通，逆境都可以转化为机遇。",
-                5: "今日系关键日，做出既决定会影响成件事！",
-                6: "今日适合总结复盘，为下一步做好准备。"
+            const adv = {
+                1: "💫 今日冲劲满满，想做就做！",
+                2: "💫 今日稳步前进，循序渐进~",
+                3: "💫 今日要三思，谨慎行事~",
+                4: "💫 今日灵活变通，逆境化机~",
+                5: "💫 今日关键抉择，影响全局！",
+                6: "💫 今日总结复盘，为明天做准备~"
             };
-            
-            const today = new Date().toLocaleDateString('zh-CN', { year: 'numeric', month: 'long', day: 'numeric' });
             
             const html = `
-                <div class="fortune-card">
-                    <div class="fortune-header">
-                        <div class="fortune-title">📖 今日运势解读 - ${today}</div>
-                    </div>
+                <div class="fortune">
+                    <div class="fortune-title">📖 今日运势</div>
                     <div class="fortune-content">
-<b>问题：</b>${question}
+<b>问题：</b>${q}
 
-<b>卦象：</b>${gua.name} — ${gua.ci}
+<b>卦象：</b>${gua.n} — ${gua.c}
+<b>上卦：</b>${sg.name}（${sg.m}）
+<b>下卦：</b>${xg.name}（${xg.m}）
+<b>动爻：</b>第${d}爻
 
-<b>上卦：</b>${shangGua.name}（${shangGua.meaning}）
-<b>下卦：</b>${xiaGua.name}（${xiaGua.meaning}）
-<b>动爻：</b>第${dongyao}爻
+<b>⚡ 解读：</b>
+${dy[d]}
 
-<b>📝 动爻解读：</b>
-${dongyaoMeanings[dongyao]}
+<b>💡 建议：</b>
+${adv[d]}
 
-<b>💡 今日建议：</b>
-${advice[dongyao]}
-
----
-🐱 记住：卦象只系参考，你既选择先系最紧要！
+✨ 记住：卦象仅供参考，你的选择才最重要~
                     </div>
                     <button class="copy-btn" onclick="copyResult()">📋 复制结果</button>
                 </div>
@@ -364,31 +480,24 @@ ${advice[dongyao]}
         }
 
         function copyResult() {
-            const { question, shangGua, xiaGua, gua, dongyao } = currentResult;
-            
-            const dongyaoMeanings = {
-                1: "初爻动——事情既开始，变动既萌芽阶段。宜把握时机，主动出击！",
-                2: "二爻动——事情既发展，人际关系既变化。要注意同身边人既相处。",
-                3: "三爻动——事情既转折点。要谨慎，三思而后行，唔好冲动。",
-                4: "四爻动——环境既变化。灵活变通，适应新既情况。",
-                5: "五爻动——事情既关键点，决定性既时刻。把握机会，做出抉择。",
-                6: "上爻动——事情既结束或新既开始。总结经验，准备新一轮既开始。"
+            const { q, sg, xg, gua, d } = currentResult;
+            const dy = {
+                1: "初爻动——事情开端，变动萌芽。把握时机，主动出击！",
+                2: "二爻动——发展阶段，人事变化。留意身边机会。",
+                3: "三爻动——转折点。谨慎三思，勿冲动。",
+                4: "四爻动——环境变化。灵活应变，适应新况。",
+                5: "五爻动——关键时刻。把握机会，做出抉择。",
+                6: "上爻动——结束或新开始。总结经验，准备再战。"
+            };
+            const adv = {
+                1: "💫 今日冲劲满满，想做就做！", 2: "💫 今日稳步前进，循序渐进~",
+                3: "💫 今日要三思，谨慎行事~", 4: "💫 今日灵活变通，逆境化机~",
+                5: "💫 今日关键抉择，影响全局！", 6: "💫 今日总结复盘，为明天做准备~"
             };
             
-            const advice = {
-                1: "🎯 今日冲劲十足，有咩想做就趁今日啦！",
-                2: "今日稳打稳扎，循序渐进咁推进就最好啦。",
-                3: "今日要审时度势，三思而后行，唔好冲动呀！",
-                4: "今日几灵活变通，逆境都可以转化为机遇。",
-                5: "今日系关键日，做出既决定会影响成件事！",
-                6: "今日适合总结复盘，为下一步做好准备。"
-            };
+            const text = `【今日运势】\n问题：${q}\n\n卦象：${gua.n} — ${gua.c}\n上卦：${sg.name}（${sg.m}）\n下卦：${xg.name}（${xg.m}）\n动爻：第${d}爻\n\n⚡ 解读：${dy[d]}\n\n💡 建议：${adv[d]}\n\n✨ 记住：你的选择才最重要~`;
             
-            const text = `【周易运势】\n问题：${question}\n\n卦象：${gua.name} — ${gua.ci}\n上卦：${shangGua.name}（${shangGua.meaning}）\n下卦：${xiaGua.name}（${xiaGua.meaning}）\n动爻：第${dongyao}爻\n\n📝 动爻解读：${dongyaoMeanings[dongyao]}\n\n💡 今日建议：${advice[dongyao]}\n\n🐱 记住：卦象只系参考，你既选择先系最紧要！`;
-            
-            navigator.clipboard.writeText(text).then(() => {
-                alert("✅ 已复制到剪贴板！");
-            });
+            navigator.clipboard.writeText(text).then(() => alert("复制成功啦~"));
         }
     </script>
 </body>
