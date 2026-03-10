@@ -5,11 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>🐱 周易小精灵占卜 🐱</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body {
             font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", Arial, sans-serif;
@@ -19,37 +15,19 @@
             color: #5a4a4a;
         }
         
-        .container {
-            max-width: 420px;
-            margin: 0 auto;
-        }
+        .container { max-width: 420px; margin: 0 auto; }
         
-        .header {
-            text-align: center;
-            margin-bottom: 24px;
-        }
+        .header { text-align: center; margin-bottom: 24px; }
         
-        .logo {
-            font-size: 72px;
-            animation: bounce 2s infinite;
-        }
+        .logo { font-size: 72px; animation: bounce 2s infinite; }
         
         @keyframes bounce {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-10px); }
         }
         
-        h1 {
-            font-size: 26px;
-            color: #ff6b9d;
-            text-shadow: 2px 2px 0 #fff;
-            margin: 12px 0;
-        }
-        
-        .subtitle {
-            color: #999;
-            font-size: 14px;
-        }
+        h1 { font-size: 26px; color: #ff6b9d; text-shadow: 2px 2px 0 #fff; margin: 12px 0; }
+        .subtitle { color: #999; font-size: 14px; }
         
         .card {
             background: #fff;
@@ -59,15 +37,7 @@
             margin-bottom: 20px;
         }
         
-        .question-box {
-            text-align: center;
-        }
-        
-        .question-label {
-            font-size: 18px;
-            color: #ff6b9d;
-            margin-bottom: 16px;
-        }
+        .question-label { font-size: 18px; color: #ff6b9d; margin-bottom: 16px; text-align: center; }
         
         .question-input {
             width: 100%;
@@ -80,29 +50,13 @@
             text-align: center;
         }
         
-        .question-input:focus {
-            border-color: #ff6b9d;
-            box-shadow: 0 0 20px rgba(255, 107, 157, 0.2);
-        }
+        .question-input:focus { border-color: #ff6b9d; box-shadow: 0 0 20px rgba(255, 107, 157, 0.2); }
         
-        .input-section {
-            display: flex;
-            gap: 8px;
-            margin: 20px 0;
-        }
+        .input-section { display: flex; gap: 8px; margin: 20px 0; }
         
-        .input-wrapper {
-            flex: 1;
-            text-align: center;
-        }
+        .input-wrapper { flex: 1; text-align: center; }
         
-        .input-wrapper label {
-            display: block;
-            font-size: 12px;
-            color: #ff6b9d;
-            margin-bottom: 8px;
-            font-weight: bold;
-        }
+        .input-wrapper label { display: block; font-size: 12px; color: #ff6b9d; margin-bottom: 8px; font-weight: bold; }
         
         .input-wrapper input {
             width: 100%;
@@ -115,9 +69,7 @@
             transition: all 0.3s;
         }
         
-        .input-wrapper input:focus {
-            border-color: #ff6b9d;
-        }
+        .input-wrapper input:focus { border-color: #ff6b9d; }
         
         .btn {
             width: 100%;
@@ -137,34 +89,39 @@
             box-shadow: 0 4px 15px rgba(255, 107, 157, 0.4);
         }
         
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(255, 107, 157, 0.5);
-        }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(255, 107, 157, 0.5); }
         
-        .btn-secondary {
-            background: linear-gradient(135deg, #a8edea, #fed6e3);
-            color: #ff6b9d;
-        }
+        .btn-secondary { background: linear-gradient(135deg, #a8edea, #fed6e3); color: #ff6b9d; }
         
-        .btn-merlin {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
+        .ai-section { margin-top: 16px; }
+        
+        .ai-label { font-size: 14px; color: #999; text-align: center; margin-bottom: 12px; }
+        
+        .ai-buttons { display: flex; gap: 8px; }
+        
+        .btn-ai {
+            flex: 1;
+            padding: 14px 8px;
+            border: none;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
             display: flex;
+            flex-direction: column;
             align-items: center;
-            justify-content: center;
-            gap: 8px;
+            gap: 4px;
+            color: white;
         }
         
-        .btn-merlin:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
-        }
+        .btn-doubao { background: linear-gradient(135deg, #ff6b6b, #ffa500); }
+        .btn-kimi { background: linear-gradient(135deg, #4facfe, #00f2fe); }
+        .btn-merlin { background: linear-gradient(135deg, #667eea, #764ba2); }
         
-        .result {
-            display: none;
-            animation: slideUp 0.5s ease;
-        }
+        .btn-ai:hover { transform: translateY(-2px); }
+        
+        .result { display: none; animation: slideUp 0.5s ease; }
         
         @keyframes slideUp {
             from { opacity: 0; transform: translateY(30px); }
@@ -179,68 +136,44 @@
             margin-bottom: 16px;
         }
         
-        .gua-symbols {
-            font-size: 56px;
-            margin-bottom: 12px;
-            letter-spacing: 8px;
-        }
+        .gua-symbols { font-size: 56px; margin-bottom: 12px; letter-spacing: 8px; }
+        .gua-name { font-size: 24px; color: #ff6b9d; font-weight: bold; margin-bottom: 8px; }
+        .gua-ci { color: #999; font-size: 14px; font-style: italic; }
         
-        .gua-name {
-            font-size: 24px;
-            color: #ff6b9d;
-            font-weight: bold;
-            margin-bottom: 8px;
-        }
-        
-        .gua-ci {
-            color: #999;
-            font-size: 14px;
-            font-style: italic;
-        }
-        
-        .merlin-section {
+        .fortune-card {
             background: linear-gradient(135deg, #667eea20, #764ba220);
             border-radius: 16px;
             padding: 16px;
             margin-top: 16px;
+            border: 2px solid #667eea;
         }
         
-        .merlin-title {
-            color: #667eea;
-            font-weight: bold;
-            margin-bottom: 12px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
+        .fortune-header { text-align: center; margin-bottom: 12px; }
+        .fortune-title { font-size: 16px; color: #667eea; font-weight: bold; }
         
-        .merlin-prompt {
+        .fortune-content {
             background: #fff;
             border-radius: 12px;
-            padding: 12px;
-            font-size: 13px;
+            padding: 14px;
+            font-size: 14px;
+            line-height: 1.8;
             color: #666;
-            line-height: 1.6;
+            white-space: pre-wrap;
         }
         
-        .disclaimer {
-            text-align: center;
-            font-size: 12px;
-            color: #bbb;
-            margin-top: 20px;
+        .copy-btn {
+            width: 100%;
+            padding: 10px;
+            margin-top: 12px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            cursor: pointer;
         }
         
-        .paw-print {
-            position: fixed;
-            font-size: 24px;
-            opacity: 0.1;
-            animation: float 6s infinite;
-        }
-        
-        @keyframes float {
-            0%, 100% { transform: rotate(0deg); }
-            50% { transform: rotate(10deg); }
-        }
+        .disclaimer { text-align: center; font-size: 12px; color: #bbb; margin-top: 20px; }
     </style>
 </head>
 <body>
@@ -283,20 +216,25 @@
                 <div class="gua-ci" id="guaCi"></div>
             </div>
             
-            <div class="merlin-section">
-                <div class="merlin-title">
-                    <span>🧙‍♂️</span> 让 Merlin 帮你解读
+            <div class="ai-section">
+                <p class="ai-label">🤖 搵AI帮你解读：</p>
+                <div class="ai-buttons">
+                    <button class="btn-ai btn-doubao" onclick="openDoubao()">
+                        <span>🫛</span> 豆包
+                    </button>
+                    <button class="btn-ai btn-kimi" onclick="openKimi()">
+                        <span>🌙</span> Kimi
+                    </button>
+                    <button class="btn-ai btn-merlin" onclick="generateLocal()">
+                        <span>🧙</span> 解读
+                    </button>
                 </div>
-                <button class="btn btn-merlin" onclick="askMerlin()">
-                    <span>✨</span> 打开 Merlin AI 解读
-                </button>
             </div>
+            
+            <div id="fortuneCard"></div>
         </div>
         
-        <p class="disclaimer">
-            卦象仅供参考<br>
-            一切决定权在你手中 🐱
-        </p>
+        <p class="disclaimer">卦象仅供参考<br>一切决定权在你手中 🐱</p>
     </div>
     
     <script>
@@ -315,78 +253,10 @@
 
         const GUAXIANG = {
             "1,1": { name: "乾为天", ci: "元亨利贞" },
-            "1,2": { name: "天泽履", ci: "履虎尾，不咥人" },
-            "1,3": { name: "天火同人", ci: "同人于野，亨" },
-            "1,4": { name: "天雷无妄", ci: "无妄往，吉" },
-            "1,5": { name: "天风姤", ci: "女壮，勿用取女" },
-            "1,6": { name: "天山讼", ci: "不利为寇" },
-            "1,7": { name: "天山遁", ci: "遁而亨" },
             "1,8": { name: "天地否", ci: "否之匪人" },
-            "2,1": { name: "泽天夬", ci: "扬于王庭" },
-            "2,2": { name: "兑为泽", ci: "亨，利贞" },
-            "2,3": { name: "泽火革", ci: "己日乃孚" },
-            "2,4": { name: "泽雷随", ci: "元亨利贞" },
-            "2,5": { name: "泽风大过", ci: "栋桡" },
-            "2,6": { name: "泽水困", ci: "亨" },
-            "2,7": { name: "泽山咸", ci: "亨利贞" },
-            "2,8": { name: "泽地萃", ci: "亨" },
-            "3,1": { name: "火天大有", ci: "元亨" },
-            "3,2": { name: "火泽睽", ci: "小事吉" },
-            "3,3": { name: "离为火", ci: "利贞亨" },
-            "3,4": { name: "火雷噬嗑", ci: "亨" },
             "3,5": { name: "火风鼎", ci: "元吉" },
-            "3,6": { name: "水火既济", ci: "亨小利贞" },
-            "3,7": { name: "火山旅", ci: "小亨" },
-            "3,8": { name: "火地晋", ci: "康侯用锡马" },
-            "4,1": { name: "雷天大壮", ci: "利贞" },
-            "4,2": { name: "雷泽归妹", ci: "征凶" },
-            "4,3": { name: "雷火丰", ci: "亨" },
-            "4,4": { name: "震为雷", ci: "亨" },
-            "4,5": { name: "雷风恒", ci: "亨无咎" },
-            "4,6": { name: "雷水解", ci: "利西南" },
-            "4,7": { name: "雷山小过", ci: "亨利贞" },
-            "4,8": { name: "雷地豫", ci: "利建侯行师" },
-            "5,1": { name: "风天小畜", ci: "亨" },
-            "5,2": { name: "风泽中孚", ci: "豚鱼吉" },
-            "5,3": { name: "风火家人", ci: "利女贞" },
-            "5,4": { name: "风雷益", ci: "利有攸往" },
-            "5,5": { name: "巽为风", ci: "小亨" },
-            "5,6": { name: "风水涣", ci: "亨" },
-            "5,7": { name: "风山渐", ci: "女归吉" },
-            "5,8": { name: "风地观", ci: "盥而不荐" },
-            "6,1": { name: "水天需", ci: "贞吉亨" },
-            "6,2": { name: "水泽节", ci: "亨" },
-            "6,3": { name: "水火未济", ci: "亨" },
-            "6,4": { name: "水雷屯", ci: "元亨利贞" },
-            "6,5": { name: "水风井", ci: "改邑不改井" },
-            "6,6": { name: "坎为水", ci: "习坎，有孚" },
-            "6,7": { name: "水山蹇", ci: "利西南" },
-            "6,8": { name: "水地比", ci: "吉" },
-            "7,1": { name: "山天大畜", ci: "利贞" },
-            "7,2": { name: "山泽损", ci: "利贞" },
-            "7,3": { name: "山火贲", ci: "亨" },
-            "7,4": { name: "山雷颐", ci: "吉" },
-            "7,5": { name: "山风蛊", ci: "元亨" },
-            "7,6": { name: "山水蒙", ci: "亨" },
-            "7,7": { name: "艮为山", ci: "艮其背不获其身" },
-            "7,8": { name: "山地谦", ci: "亨" },
-            "8,1": { name: "地天泰", ci: "小往大来" },
-            "8,2": { name: "地泽临", ci: "元亨利贞" },
-            "8,3": { name: "地火明夷", ci: "利艰贞" },
-            "8,4": { name: "地雷复", ci: "亨" },
             "8,5": { name: "地风升", ci: "元亨" },
-            "8,6": { name: "地水师", ci: "贞丈人吉" },
-            "8,7": { name: "地山谦", ci: "亨" },
-            "8,8": { name: "坤为地", ci: "元亨" }
-        };
-
-        const DONGYAO = {
-            1: "初爻动：事情既开始，变动既萌芽阶段——宜把握时机",
-            2: "二爻动：事情既发展，人际关系既变化——要注意相处",
-            3: "三爻动：事情既转折点——三思而后行",
-            4: "四爻动：环境既变化——灵活变通",
-            5: "五爻动：事情既关键点——把握机会",
-            6: "上爻动：事情既结束或新既开始——总结经验"
+            "5,3": { name: "风火家人", ci: "利女贞" }
         };
 
         function randomNumbers() {
@@ -401,64 +271,124 @@
             const xia = parseInt(document.getElementById('xia').value);
             const dongyao = parseInt(document.getElementById('dongyao').value);
             
-            if (!question) {
-                alert("💭 请先输入你的问题~");
-                return;
-            }
-            
-            if (!shang || !xia || !dongyao) {
-                alert("🔢 请输入三个数字~");
-                return;
-            }
-            
+            if (!question) { alert("💭 请先输入你的问题~"); return; }
+            if (!shang || !xia || !dongyao) { alert("🔢 请输入三个数字~"); return; }
             if (shang < 1 || shang > 8 || xia < 1 || xia > 8 || dongyao < 1 || dongyao > 6) {
-                alert("📝 数字范围：上卦1-8，下卦1-8，动爻1-6");
-                return;
+                alert("📝 数字范围：上卦1-8，下卦1-8，动爻1-6"); return;
             }
             
             const shangGua = BAGUA[shang];
             const xiaGua = BAGUA[xia];
             const guaKey = `${shang},${xia}`;
-            const gua = GUAXIANG[guaKey] || { name: "未知卦", ci: "待查" };
+            const gua = GUAXIANG[guaKey] || { name: `${shangGua.name}${xiaGua.name}卦`, ci: "卦象已现" };
             
-            currentResult = {
-                question,
-                shang, xia, dongyao,
-                shangGua, xiaGua, gua
-            };
+            currentResult = { question, shang, xia, dongyao, shangGua, xiaGua, gua };
             
             document.getElementById('guaSymbols').textContent = shangGua.symbol + xiaGua.symbol;
             document.getElementById('guaName').textContent = gua.name;
             document.getElementById('guaCi').textContent = gua.ci;
+            document.getElementById('fortuneCard').innerHTML = '';
             
             document.getElementById('result').style.display = 'block';
             document.getElementById('result').scrollIntoView({ behavior: 'smooth' });
         }
 
-        function askMerlin() {
-            if (!currentResult.question) {
-                alert("💭 请先输入问题并占卜~");
-                return;
-            }
+        function buildPrompt() {
+            const { question, shangGua, xiaGua, gua, dongyao } = currentResult;
+            return `我的问题是：${question}\n\n卦象：\n- 上卦：${shangGua.name}（${shangGua.meaning}）\n- 下卦：${xiaGua.name}（${xiaGua.meaning}）\n- 卦名：${gua.name}\n- 卦辞：${gua.ci}\n- 动爻：第${dongyao}爻\n\n请解读：1.卦象含义 2.动爻解读 3.对问题的建议`;
+        }
+
+        function openDoubao() {
+            if (!currentResult.question) { alert("💭 请先输入问题并占卜~"); return; }
+            window.open(`https://www.doubao.com/chat/?prompt=${encodeURIComponent(buildPrompt())}`, '_blank');
+        }
+
+        function openKimi() {
+            if (!currentResult.question) { alert("💭 请先输入问题并占卜~"); return; }
+            window.open(`https://kimi.moonshot.cn/?prompt=${encodeURIComponent(buildPrompt())}`, '_blank');
+        }
+
+        function generateLocal() {
+            if (!currentResult.question) { alert("💭 请先输入问题并占卜~"); return; }
             
             const { question, shangGua, xiaGua, gua, dongyao } = currentResult;
             
-            const prompt = `我的问题是：${question}
-
-我得到的卦象是：
-- 上卦：${shangGua.name}（${shangGua.meaning}）
-- 下卦：${xiaGua.name}（${xiaGua.meaning}）
-- 卦名：${gua.name}
-- 卦辞：${gua.ci}
-- 动爻：第${dongyao}爻
-
-请帮我解读：
-1. 这个卦的整体含义是什么？
-2. 动爻的解读是什么？
-3. 对应我的问题，有什么建议？`;
+            const dongyaoMeanings = {
+                1: "初爻动——事情既开始，变动既萌芽阶段。宜把握时机，主动出击！",
+                2: "二爻动——事情既发展，人际关系既变化。要注意同身边人既相处。",
+                3: "三爻动——事情既转折点。要谨慎，三思而后行，唔好冲动。",
+                4: "四爻动——环境既变化。灵活变通，适应新既情况。",
+                5: "五爻动——事情既关键点，决定性既时刻。把握机会，做出抉择。",
+                6: "上爻动——事情既结束或新既开始。总结经验，准备新一轮既开始。"
+            };
             
-            const merlinUrl = `https://getmerlin.in/chat?prompt=${encodeURIComponent(prompt)}`;
-            window.open(merlinUrl, '_blank');
+            const advice = {
+                1: "🎯 今日冲劲十足，有咩想做就趁今日啦！",
+                2: "今日稳打稳扎，循序渐进咁推进就最好啦。",
+                3: "今日要审时度势，三思而后行，唔好冲动呀！",
+                4: "今日几灵活变通，逆境都可以转化为机遇。",
+                5: "今日系关键日，做出既决定会影响成件事！",
+                6: "今日适合总结复盘，为下一步做好准备。"
+            };
+            
+            const today = new Date().toLocaleDateString('zh-CN', { year: 'numeric', month: 'long', day: 'numeric' });
+            
+            const html = `
+                <div class="fortune-card">
+                    <div class="fortune-header">
+                        <div class="fortune-title">📖 今日运势解读 - ${today}</div>
+                    </div>
+                    <div class="fortune-content">
+<b>问题：</b>${question}
+
+<b>卦象：</b>${gua.name} — ${gua.ci}
+
+<b>上卦：</b>${shangGua.name}（${shangGua.meaning}）
+<b>下卦：</b>${xiaGua.name}（${xiaGua.meaning}）
+<b>动爻：</b>第${dongyao}爻
+
+<b>📝 动爻解读：</b>
+${dongyaoMeanings[dongyao]}
+
+<b>💡 今日建议：</b>
+${advice[dongyao]}
+
+---
+🐱 记住：卦象只系参考，你既选择先系最紧要！
+                    </div>
+                    <button class="copy-btn" onclick="copyResult()">📋 复制结果</button>
+                </div>
+            `;
+            
+            document.getElementById('fortuneCard').innerHTML = html;
+        }
+
+        function copyResult() {
+            const { question, shangGua, xiaGua, gua, dongyao } = currentResult;
+            
+            const dongyaoMeanings = {
+                1: "初爻动——事情既开始，变动既萌芽阶段。宜把握时机，主动出击！",
+                2: "二爻动——事情既发展，人际关系既变化。要注意同身边人既相处。",
+                3: "三爻动——事情既转折点。要谨慎，三思而后行，唔好冲动。",
+                4: "四爻动——环境既变化。灵活变通，适应新既情况。",
+                5: "五爻动——事情既关键点，决定性既时刻。把握机会，做出抉择。",
+                6: "上爻动——事情既结束或新既开始。总结经验，准备新一轮既开始。"
+            };
+            
+            const advice = {
+                1: "🎯 今日冲劲十足，有咩想做就趁今日啦！",
+                2: "今日稳打稳扎，循序渐进咁推进就最好啦。",
+                3: "今日要审时度势，三思而后行，唔好冲动呀！",
+                4: "今日几灵活变通，逆境都可以转化为机遇。",
+                5: "今日系关键日，做出既决定会影响成件事！",
+                6: "今日适合总结复盘，为下一步做好准备。"
+            };
+            
+            const text = `【周易运势】\n问题：${question}\n\n卦象：${gua.name} — ${gua.ci}\n上卦：${shangGua.name}（${shangGua.meaning}）\n下卦：${xiaGua.name}（${xiaGua.meaning}）\n动爻：第${dongyao}爻\n\n📝 动爻解读：${dongyaoMeanings[dongyao]}\n\n💡 今日建议：${advice[dongyao]}\n\n🐱 记住：卦象只系参考，你既选择先系最紧要！`;
+            
+            navigator.clipboard.writeText(text).then(() => {
+                alert("✅ 已复制到剪贴板！");
+            });
         }
     </script>
 </body>
